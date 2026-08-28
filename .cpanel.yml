@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/goldenk1/public_html/
+    - /bin/cp -R "Official Website/"* $DEPLOYPATH

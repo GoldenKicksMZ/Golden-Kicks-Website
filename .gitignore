@@ -1,0 +1,11 @@
+# OS & Node
+.DS_Store
+Thumbs.db
+node_modules/
+temp_test*.js
+
+# Binary archives & heavy spreadsheets
+*.zip
+*.xlsx
+_tmp_img_test/
+temp_zip_extract/

@@ -1,0 +1,2645 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Kicks | Loja Premium de Futebol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            deep: "#BD8A57",
+                            mid: "#CEA26B",
+                            light: "#DDB77C"
+                        },
+                        lux: {
+                            ink: "#111111",
+                            line: "#EAEAEA",
+                            surface: "#F3F4F6",
+                            bg: "#F8F9FA"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["\"Manrope\"", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "\"Segoe UI\"", "sans-serif"],
+                        display: ["\"Cormorant Garamond\"", "Georgia", "serif"]
+                    },
+                    boxShadow: {
+                        product: "0 0.5px 0 rgba(0,0,0,0.05), 0 10px 24px rgba(0,0,0,0.035)",
+                        soft: "0 8px 20px rgba(0,0,0,0.035)",
+                        panel: "0 14px 34px rgba(0,0,0,0.04)",
+                        floating: "0 10px 24px rgba(0,0,0,0.05)"
+                    },
+                    dropShadow: {
+                        shoe: "0 10px 12px rgba(0,0,0,0.08)"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --gold-deep: #BD8A57;
+            --gold-mid: #CEA26B;
+            --gold-light: #DDB77C;
+            --lux-ink: #000000;
+            --lux-line: #D8D8D8;
+            --lux-surface: #F2F2F2;
+            --gold-gradient: linear-gradient(135deg, #BD8A57 0%, #CEA26B 25%, #DDB77C 50%, #CEA26B 75%, #BD8A57 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--lux-ink);
+            background: #F8F9FA;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            body { background: #FFFFFF; }
+        }
+
+        .font-display {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: -0.025em;
+            font-weight: 600;
+        }
+
+        @media (max-width: 767px) {
+            .mobile-line-clamp-2 {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+            }
+        }
+
+        .lux-ease {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .lux-ease-slow {
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .glass-top {
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+        }
+
+        .gold-gradient {
+            background-image: var(--gold-gradient);
+        }
+
+        .hairline {
+            border-color: var(--lux-line);
+            border-width: 0.5px;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .surface-grid {
+            background-image:
+                linear-gradient(rgba(216, 216, 216, 0.34) 0.5px, transparent 0.5px),
+                linear-gradient(90deg, rgba(216, 216, 216, 0.34) 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .page-enter {
+            animation: pageFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #size-guide-modal {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #size-picker-sheet {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        #size-picker-sheet.size-picker-open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .filter-panel {
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .filter-panel-closed {
+            max-height: 0;
+        }
+
+        .filter-panel-desktop-open {
+            max-height: 300px;
+        }
+
+        .filter-panel-mobile-open {
+            max-height: 400px;
+        }
+
+        .toast-item {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .toast-enter {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .toast-ready {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-exit {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        @media (min-width: 1024px) {
+            .toast-enter {
+                transform: translateY(8px);
+            }
+        }
+
+        @media (max-width: 1023px) {
+            #size-guide-modal {
+                transform: translateY(100%);
+            }
+
+            #size-guide-modal.size-guide-open {
+                transform: translateY(0);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #size-guide-modal {
+                transform: translate(-50%, calc(-50% + 14px)) scale(0.96);
+                opacity: 0;
+            }
+
+            #size-guide-modal.size-guide-open {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pageFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (hover: hover) {
+            .product-card:hover .product-media-primary {
+                opacity: 0;
+            }
+
+            .product-card:hover .product-media-secondary {
+                opacity: 1;
+            }
+
+            .product-card:hover .product-copy {
+                transform: translateY(-4px);
+            }
+        }
+
+        #mobile-nav-bar {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+        }
+
+        .desktop-nav-link {
+            color: #000000;
+        }
+
+        .desktop-nav-link:hover {
+            background-image: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .desktop-nav-icon {
+            color: #000000;
+        }
+
+        .desktop-nav-icon:hover {
+            background-image: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .desktop-nav-icon:hover svg * {
+            stroke: url(#nav-gold-gradient);
+        }
+
+        #site-header {
+            transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        #mobile-inline-search {
+            transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
+            max-height: 96px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            #site-header.header-home-top {
+                background: transparent;
+                border-color: transparent;
+                box-shadow: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            #site-header.header-home-top #desktop-header-row {
+                background: transparent;
+            }
+
+            #site-header.header-home-top .desktop-nav-link,
+            #site-header.header-home-top .desktop-nav-icon {
+                color: #FFFFFF;
+            }
+
+            #site-header.header-home-top #desktop-header-logo {
+                filter: brightness(0) invert(1);
+            }
+
+            #site-header.header-home-top #cart-badge-desktop {
+                background: #FFFFFF;
+                color: #000000;
+            }
+
+            #site-header.header-home-scrolled {
+                background: rgba(255, 255, 255, 0.96);
+                border-color: var(--lux-line);
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
+
+            #site-header.header-solid {
+                background: #FFFFFF;
+                border-color: var(--lux-line);
+                box-shadow: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            #desktop-header-logo {
+                transition: filter 0.4s ease;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            #site-header.mobile-search-hidden #mobile-inline-search {
+                opacity: 0;
+                pointer-events: none;
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                transform: translateY(-8px);
+            }
+        }
+
+        
+    </style>
+</head>
+<body class="bg-lux-bg text-lux-ink selection:bg-[#CEA26B] selection:text-black overflow-x-hidden w-full">
+    <svg aria-hidden="true" width="0" height="0" class="absolute">
+        <defs>
+            <linearGradient id="nav-gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#BD8A57"></stop>
+                <stop offset="25%" stop-color="#CEA26B"></stop>
+                <stop offset="50%" stop-color="#DDB77C"></stop>
+                <stop offset="75%" stop-color="#CEA26B"></stop>
+                <stop offset="100%" stop-color="#BD8A57"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    <div id="toast-container" class="pointer-events-none fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom))] left-1/2 z-[90] flex w-[calc(100%-2rem)] max-w-md -translate-x-1/2 flex-col gap-3 md:bottom-5"></div>
+
+    <div id="mobile-menu-overlay" class="pointer-events-none fixed inset-0 z-[60] bg-black/35 opacity-0 transition-opacity duration-300"></div>
+    <aside id="mobile-menu" class="pointer-events-none fixed inset-y-0 left-0 z-[70] flex w-[88%] max-w-sm -translate-x-full flex-col bg-white transition-transform duration-300 ease-out">
+        <header class="flex items-center justify-between border-b-[0.5px] border-[color:var(--lux-line)] px-5 py-4">
+            <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Golden Kicks</p>
+                <h2 class="text-2xl font-semibold text-black">Navegacao</h2>
+            </div>
+            <button type="button" onclick="app.toggleMobileMenu(false)" class="flex h-11 w-11 items-center justify-center border border-[color:var(--lux-line)] text-black lux-ease hover:border-gold-deep hover:text-gold-deep" aria-label="Fechar menu">
+                <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+        </header>
+        <div class="flex-1 overflow-y-auto px-5 py-6">
+            <section class="border-b-[0.5px] border-[#D8D8D8] pb-6">
+                <p id="mobile-menu-shop-title" class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Comprar por piso</p>
+                <nav class="mt-4 flex flex-col gap-2" aria-label="Colecoes mobile">
+                    <button type="button" onclick="app.navigate('plp', { category: 'all' }); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span>Ver Tudo</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                    <button type="button" onclick="app.navigate('plp', { category: 'campo' }); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span>Campo (FG)</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                    <button type="button" onclick="app.navigate('plp', { category: 'society' }); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span>Society (TF)</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                    <button type="button" onclick="app.navigate('plp', { category: 'futsal' }); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span>Futsal (IC)</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                    <button type="button" onclick="app.scrollHome('section-new-arrivals'); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span id="mobile-menu-new-arrivals">Novidades</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                    <button type="button" onclick="app.navigate('about'); app.toggleMobileMenu(false);" class="flex items-center justify-between py-3 text-left text-[15px] font-semibold text-black lux-ease hover:text-gold-deep">
+                        <span id="mobile-menu-about">A nossa historia</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 stroke-[1.5px] text-[#D8D8D8]"></i>
+                    </button>
+                </nav>
+            </section>
+            <section class="border-b border-[color:var(--lux-line)] py-6">
+                <p id="mobile-menu-service-title" class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Servico</p>
+                <div class="mt-4 grid gap-3">
+                    <article class="bg-lux-surface px-4 py-4">
+                        <p id="mobile-menu-maputo-title" class="text-[11px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Maputo 24h</p>
+                        <p id="mobile-menu-maputo-body" class="mt-1 text-sm leading-6 text-neutral-700">Stock curado, confirmacao no mesmo dia e janelas de entrega rapidas.</p>
+                    </article>
+                    <article class="bg-lux-surface px-4 py-4">
+                        <p id="mobile-menu-absence-title" class="text-[11px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Zero Footer</p>
+                        <p id="mobile-menu-absence-body" class="mt-1 text-sm leading-6 text-neutral-700">A experiencia termina de forma limpa no produto e na historia, nao no ruido.</p>
+                    </article>
+                </div>
+            </section>
+            <section class="py-6">
+                <button type="button" onclick="app.showAccountToast(); app.toggleMobileMenu(false);" class="flex w-full items-center justify-between border border-[color:var(--lux-line)] px-4 py-4 text-left text-sm font-semibold text-black lux-ease hover:border-gold-deep hover:text-gold-deep">
+                    <span id="mobile-menu-account-preview">Vista da conta</span>
+                    <i data-lucide="user-round" class="h-4 w-4"></i>
+                </button>
+            </section>
+        </div>
+    </aside>
+
+    <div id="search-overlay" class="pointer-events-none fixed inset-0 z-[80] flex flex-col bg-white opacity-0 transition-opacity duration-300">
+        <header class="border-b border-[color:var(--lux-line)] px-4 py-4 md:px-10">
+            <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
+                <div>
+                    <p id="search-overlay-title" class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Pesquisa</p>
+                    <h2 id="search-overlay-heading" class="font-display text-3xl leading-[0.92] tracking-[-0.025em] text-black md:text-5xl lg:text-6xl lg:tracking-[-0.03em]">Pesquisa direta no catalogo.</h2>
+                </div>
+                <button type="button" onclick="app.toggleSearch(false)" class="flex h-11 w-11 items-center justify-center border border-[color:var(--lux-line)] text-black lux-ease hover:border-gold-deep hover:text-gold-deep" aria-label="Fechar pesquisa">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+        </header>
+        <div class="mx-auto grid w-full max-w-7xl flex-1 gap-8 overflow-y-auto px-4 py-6 md:grid-cols-[minmax(0,1.15fr)_360px] md:px-10 md:py-10">
+            <section>
+                <label for="search-input" class="sr-only">Pesquisa no catalogo</label>
+                <div class="border-b border-black pb-4">
+                    <input id="search-input" type="text" oninput="app.handleSearch(this.value)" placeholder="Pesquisa por modelo, piso ou marca" class="w-full bg-transparent text-3xl font-semibold tracking-tight text-black outline-none placeholder:text-neutral-300 md:text-5xl">
+                </div>
+                <div id="search-results" class="mt-8 grid gap-4"></div>
+            </section>
+            <aside class="bg-lux-surface px-5 py-6 md:px-6">
+                <p id="search-routes-title" class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Atalhos</p>
+                <div class="mt-4 grid gap-3">
+                    <button type="button" onclick="app.navigate('plp', { category: 'campo' }); app.toggleSearch(false);" class="flex items-center justify-between border border-transparent bg-white px-4 py-4 text-left text-sm font-semibold text-black shadow-soft lux-ease hover:border-gold-deep">
+                        <span id="search-route-campo">Rotacao elite para campo</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 text-gold-deep"></i>
+                    </button>
+                    <button type="button" onclick="app.navigate('plp', { category: 'society' }); app.toggleSearch(false);" class="flex items-center justify-between border border-transparent bg-white px-4 py-4 text-left text-sm font-semibold text-black shadow-soft lux-ease hover:border-gold-deep">
+                        <span id="search-route-society">Selecao rapida para society</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 text-gold-deep"></i>
+                    </button>
+                    <button type="button" onclick="app.scrollHome('section-new-arrivals'); app.toggleSearch(false);" class="flex items-center justify-between border border-transparent bg-white px-4 py-4 text-left text-sm font-semibold text-black shadow-soft lux-ease hover:border-gold-deep">
+                        <span id="search-route-new">Novidades</span>
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 text-gold-deep"></i>
+                    </button>
+                </div>
+                <div class="mt-8 border-t border-[color:var(--lux-line)] pt-6">
+                    <p id="search-logic-title" class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Logica de pesquisa</p>
+                    <p id="search-logic-body" class="mt-3 text-sm leading-6 text-neutral-700">Pesquise por marca, piso ou silo. Os resultados priorizam stock disponivel.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div id="cart-overlay" class="pointer-events-none fixed inset-0 z-[60] bg-black/30 opacity-0 transition-opacity duration-300"></div>
+    <aside id="cart-drawer" class="pointer-events-none fixed inset-y-0 right-0 z-[70] flex w-full max-w-[420px] translate-x-full flex-col bg-white transition-transform duration-300 ease-out">
+        <header class="flex items-center justify-between border-b border-[color:var(--lux-line)] px-5 py-5">
+            <div>
+                <p id="cart-title" class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Saco</p>
+                <h2 id="cart-heading" class="text-2xl font-semibold text-black">Selecao</h2>
+            </div>
+            <button type="button" onclick="app.toggleCart(false)" class="flex h-11 w-11 items-center justify-center border border-[color:var(--lux-line)] text-black lux-ease hover:border-gold-deep hover:text-gold-deep" aria-label="Fechar saco">
+                <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+        </header>
+        <div id="cart-items" class="flex-1 overflow-y-auto px-5 py-5"></div>
+        <div class="border-t border-[color:var(--lux-line)] px-5 py-5">
+            <div class="mb-4 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+                <span id="cart-subtotal-label">Subtotal</span>
+                <span id="cart-subtotal">0 MT</span>
+            </div>
+            <div class="grid gap-3">
+                <button id="cart-checkout-btn" type="button" onclick="app.startCheckout()" class="gold-gradient flex h-14 items-center justify-center rounded-full text-[11px] font-bold uppercase tracking-[0.26em] text-black shadow-sm lux-ease hover:scale-[1.01]">
+                    Finalizar
+                </button>
+                <button id="cart-continue-btn" type="button" onclick="app.toggleCart(false)" class="flex h-14 items-center justify-center rounded-full border border-[color:var(--lux-line)] text-[11px] font-bold uppercase tracking-[0.26em] text-black lux-ease hover:border-black">
+                    Continuar
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div id="wishlist-overlay" class="pointer-events-none fixed inset-0 z-[60] bg-black/30 opacity-0 transition-opacity duration-300"></div>
+    <aside id="wishlist-drawer" class="pointer-events-none fixed inset-y-0 right-0 z-[70] flex w-full max-w-[420px] translate-x-full flex-col bg-white transition-transform duration-300 ease-out">
+        <header class="flex items-center justify-between border-b border-[color:var(--lux-line)] px-5 py-5">
+            <div>
+                <p id="wishlist-label" class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Favoritos</p>
+                <h2 id="wishlist-heading" class="text-2xl font-semibold text-black">Selecao guardada</h2>
+            </div>
+            <button type="button" onclick="app.toggleWishlistDrawer(false)" class="flex h-11 w-11 items-center justify-center border border-[color:var(--lux-line)] text-black lux-ease hover:border-gold-deep hover:text-gold-deep" aria-label="Fechar favoritos">
+                <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+        </header>
+        <div id="wishlist-items" class="flex-1 overflow-y-auto px-5 py-5"></div>
+    </aside>
+
+    <div id="size-guide-overlay" class="pointer-events-none fixed inset-0 z-[85] bg-black/45 opacity-0 transition-opacity duration-300"></div>
+    <div id="size-guide-modal" class="pointer-events-none fixed inset-x-0 bottom-0 z-[90] max-h-[80vh] overflow-hidden rounded-t-2xl bg-white shadow-panel lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:w-full lg:max-w-lg lg:rounded-none">
+        <div id="size-guide-content" class="flex max-h-[80vh] flex-col overflow-hidden"></div>
+    </div>
+
+    <div id="size-picker-overlay" class="pointer-events-none fixed inset-0 z-[85] bg-black/45 opacity-0 transition-opacity duration-300 lg:hidden"></div>
+    <div id="size-picker-sheet" class="pointer-events-none fixed inset-x-0 bottom-0 z-[90] rounded-t-2xl bg-white shadow-panel lg:hidden">
+        <div id="size-picker-content" class="flex max-h-[70vh] flex-col overflow-hidden"></div>
+    </div>
+
+    <header id="site-header" class="sticky top-0 z-50 border-b-[0.5px] border-[color:var(--lux-line)] bg-white">
+        <div id="desktop-header-row" class="hidden h-16 items-center bg-white px-8 text-black lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-12">
+            <nav class="flex items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.2em]" aria-label="Desktop navigation">
+                <button id="desktop-link-campo" type="button" onclick="app.navigate('plp', { category: 'campo' })" class="desktop-nav-link lux-ease">Campo</button>
+                <button id="desktop-link-society" type="button" onclick="app.navigate('plp', { category: 'society' })" class="desktop-nav-link lux-ease">Society</button>
+                <button id="desktop-link-futsal" type="button" onclick="app.navigate('plp', { category: 'futsal' })" class="desktop-nav-link lux-ease">Futsal</button>
+                <button id="desktop-link-drop" type="button" onclick="app.scrollHome('section-new-arrivals')" class="desktop-nav-link lux-ease">Novidades</button>
+                <button id="desktop-link-about" type="button" onclick="app.navigate('about')" class="desktop-nav-link lux-ease">A Marca</button>
+            </nav>
+            <button type="button" onclick="app.navigate('home')" class="flex items-center justify-center">
+                <img id="desktop-header-logo" src="./assets/LOGO/golden-kicks-logo-horizontal.svg" alt="Golden Kicks" class="h-10 w-auto object-contain">
+            </button>
+            <div class="flex items-center justify-end gap-1.5">
+                <button id="desktop-search-btn" type="button" onclick="app.toggleSearch(true)" class="desktop-nav-icon flex h-9 w-9 items-center justify-center lux-ease" aria-label="Pesquisa">
+                    <i data-lucide="search" class="h-3.5 w-3.5"></i>
+                    <span class="sr-only">Pesquisa</span>
+                </button>
+                <button id="desktop-account-btn" type="button" onclick="app.showAccountToast()" class="desktop-nav-icon flex h-9 w-9 items-center justify-center lux-ease" aria-label="Conta">
+                    <i data-lucide="user-round" class="h-3.5 w-3.5"></i>
+                    <span class="sr-only">Conta</span>
+                </button>
+                <button id="desktop-favorites-btn" type="button" onclick="app.toggleWishlistDrawer(true)" class="desktop-nav-icon relative flex h-9 w-9 items-center justify-center lux-ease" aria-label="Favoritos">
+                    <i data-lucide="heart" class="h-3.5 w-3.5"></i>
+                    <span id="wishlist-badge-desktop" class="absolute -right-1 -top-1 hidden h-4.5 min-w-4.5 items-center justify-center rounded-full bg-black px-1 text-[8px] font-semibold text-white">0</span>
+                    <span class="sr-only">Favoritos</span>
+                </button>
+                <button id="desktop-cart-btn" type="button" onclick="app.toggleCart(true)" class="desktop-nav-icon relative flex h-9 w-9 items-center justify-center lux-ease" aria-label="Saco">
+                    <i data-lucide="shopping-bag" class="h-3.5 w-3.5"></i>
+                    <span id="cart-badge-desktop" class="absolute -right-1 -top-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-black px-1 text-[8px] font-semibold text-white">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex h-16 items-center justify-between px-5 pt-2 lg:hidden">
+            <button type="button" onclick="app.toggleMobileMenu(true)" class="flex h-11 w-11 items-center justify-center rounded-full border border-lux-line bg-white shadow-none lux-ease hover:border-gold-mid" aria-label="Abrir menu">
+                <i data-lucide="menu" class="h-4 w-4"></i>
+            </button>
+            <button type="button" onclick="app.navigate('home')" class="flex items-center justify-center">
+                <img src="./assets/LOGO/golden-kicks-logo-horizontal.svg" alt="Golden Kicks" class="h-7 w-auto object-contain">
+            </button>
+            <div class="flex items-center gap-2">
+                <button id="mobile-wishlist-btn" type="button" onclick="app.toggleWishlistDrawer(true)" class="relative flex h-11 w-11 items-center justify-center rounded-full border border-lux-line bg-white shadow-none lux-ease hover:border-gold-mid" aria-label="Favoritos">
+                    <i data-lucide="bell" class="h-4 w-4"></i>
+                    <span id="wishlist-badge-mobile" class="absolute -right-1 -top-1 hidden h-4.5 min-w-4.5 items-center justify-center rounded-full bg-gold-deep px-1 text-[8px] font-bold text-white">0</span>
+                </button>
+                <button type="button" onclick="app.toggleCart(true)" class="relative flex h-11 w-11 items-center justify-center rounded-full border border-lux-line bg-white shadow-none lux-ease hover:border-gold-mid" aria-label="Abrir saco">
+                    <i data-lucide="shopping-bag" class="h-4 w-4"></i>
+                    <span id="cart-badge-mobile" class="absolute -right-1 -top-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-gold-deep px-1 text-[8px] font-bold text-white">0</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-inline-search" class="px-5 pb-3 pt-4 lg:hidden">
+            <button type="button" onclick="app.toggleSearch(true)" class="flex h-12 w-full items-center gap-3 rounded-xl border border-lux-line bg-white px-4 shadow-none">
+                <i data-lucide="search" class="h-5 w-5 text-neutral-400"></i>
+                <span class="text-sm font-medium text-neutral-400">Pesquisa por marca, piso...</span>
+                <div class="ml-auto flex h-8 w-8 items-center justify-center rounded-[0.5rem] bg-lux-surface text-black">
+                    <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <main class="pb-[calc(6rem+env(safe-area-inset-bottom))] lg:pb-0">
+        <section id="view-home" class="page-enter"></section>
+        <section id="view-plp" class="hidden"></section>
+        <section id="view-pdp" class="hidden"></section>
+        <section id="view-checkout" class="hidden"></section>
+        <section id="view-confirmation" class="hidden"></section>
+        <section id="view-about" class="hidden"></section>
+    </main>
+
+    <nav id="mobile-nav-bar" class="fixed bottom-6 left-1/2 z-50 flex h-14 w-[calc(100%-2.5rem)] max-w-sm -translate-x-1/2 items-center justify-around rounded-[1.75rem] border border-[color:var(--lux-line)] bg-white px-4 shadow-[0_10px_24px_rgba(0,0,0,0.06)] lg:hidden" aria-label="Mobile bottom navigation">
+        <button type="button" data-mobile-route="home" onclick="app.navigate('home')" class="group flex h-full w-[44px] flex-col items-center justify-center gap-1 text-[10px] font-medium text-neutral-400 lux-ease transition-colors">
+            <i data-lucide="house" class="h-5 w-5 stroke-[1.5px] group-[.active]:text-black"></i>
+            <span id="mobile-nav-home" class="transition-colors group-[.active]:text-black group-[.active]:font-bold">Início</span>
+        </button>
+        <button type="button" data-mobile-route="search" onclick="app.toggleSearch(true)" class="group flex h-full w-[44px] flex-col items-center justify-center gap-1 text-[10px] font-medium text-neutral-400 lux-ease transition-colors">
+            <i data-lucide="search" class="h-5 w-5 stroke-[1.5px] group-[.active]:text-black"></i>
+            <span id="mobile-nav-search" class="transition-colors group-[.active]:text-black group-[.active]:font-bold">Pesquisa</span>
+        </button>
+        <button type="button" data-mobile-route="plp" onclick="app.navigate('plp', { category: 'all' })" class="group flex h-full w-[44px] flex-col items-center justify-center gap-1 text-[10px] font-medium text-neutral-400 lux-ease transition-colors">
+            <i data-lucide="grid-2x2" class="h-5 w-5 stroke-[1.5px] group-[.active]:text-black"></i>
+            <span id="mobile-nav-plp" class="transition-colors group-[.active]:text-black group-[.active]:font-bold whitespace-nowrap">Ver Tudo</span>
+        </button>
+        <button type="button" data-mobile-route="account" onclick="app.showAccountToast()" class="group flex h-full w-[44px] flex-col items-center justify-center gap-1 text-[10px] font-medium text-neutral-400 lux-ease transition-colors">
+            <i data-lucide="user-round" class="h-5 w-5 stroke-[1.5px] group-[.active]:text-black"></i>
+            <span id="mobile-nav-account" class="transition-colors group-[.active]:text-black group-[.active]:font-bold">Conta</span>
+        </button>
+    </nav>
+
+    <script>
+        // DATA
+        // Fix for desktop nav square boxes on hover/focus
+        const style = document.createElement('style');
+        style.innerHTML = '#desktop-header-row button { outline: none !important; border-color: transparent !important; background-color: transparent !important; }';
+        document.head.appendChild(style);
+
+        const settings = {
+            currencySymbol: "MT",
+            currencyPosition: "suffix",
+            labels: {}
+        };
+
+        const translations = {
+            pt: {
+                orderNow: "Encomendar Agora",
+                addToCart: "Adicionar",
+                checkout: "Finalizar",
+                searchTitle: "Pesquisa",
+                searchHeading: "Pesquisa direta no catalogo.",
+                searchPlaceholder: "Pesquisa por modelo, piso ou marca",
+                quickRoutes: "Atalhos",
+                searchLogic: "Logica de pesquisa",
+                searchLogicBody: "Pesquise por marca, piso ou silo. Os resultados priorizam stock disponivel.",
+                cartTitle: "Saco",
+                cartHeading: "Selecao",
+                subtotal: "Subtotal",
+                continueBrowsing: "Continuar",
+                accountToast: "Area de conta indisponivel nesta versao.",
+                wishlistToast: "Favoritos indisponiveis nesta versao.",
+                addedToWishlist: "Artigo guardado nos favoritos.",
+                removedFromWishlist: "Artigo removido dos favoritos.",
+                wishlistTitle: "Selecao guardada",
+                wishlistEmpty: "Ainda nao tens favoritos.",
+                wishlistEmptyCTA: "Ver selecao",
+                wishlistAddToBag: "Adicionar ao saco",
+                sizeGuideTrigger: "Guia de tamanhos →",
+                sizeGuideTitle: "Guia de tamanhos",
+                sizeGuideNote: "Mede o teu pe do calcanhar a ponta do dedo mais comprido.",
+                quickAddPrompt: "Escolhe o tamanho",
+                relatedProductsLabel: "Tambem podes gostar",
+                processingPayment: "A processar pagamento...",
+                closeAction: "Fechar",
+                aboutNav: "A Marca",
+                aboutMenu: "A nossa historia",
+                aboutHeroLabel: "Golden Kicks",
+                aboutHeroTitle: "Curadoria premium para o jogo em Maputo.",
+                aboutBlock1Title: "Quem somos",
+                aboutBlock1Body: "A Golden Kicks nasce em Maputo com uma leitura rigorosa do jogo, da materia e da silhueta. Selecionamos chuteiras premium para quem procura performance, autenticidade e uma presenca mais contida.",
+                aboutBlock2Title: "Proposta de valor",
+                aboutBlock2Body: "Trabalhamos com stock internacional vindo dos Estados Unidos, Europa e Asia. Mantemos entrega em 24h em Maputo para reduzir a distancia entre a escolha certa e a entrada em campo.",
+                aboutBlock3Title: "Padroes",
+                aboutBlock3Body: "Cada par e revisto antes do despacho. Verificamos acabamento, consistencia visual, tamanho e apresentacao para que a experiencia chegue limpa, precisa e sem ruido.",
+                aboutTagline: "O jogo pede detalhe. A curadoria tambem.",
+                aboutCTA: "Explorar a selecao ->",
+                addedToCart: "Artigo adicionado ao saco.",
+                removedFromCart: "Artigo removido do saco.",
+                addBeforeCheckout: "Adicione um artigo antes de finalizar.",
+                paymentConfirmed: "Pagamento confirmado. Recibo enviado.",
+                orderConfirmTitle: "Pedido confirmado.",
+                orderConfirmSubtitle: "Recebemos a tua encomenda e a equipa Golden Kicks ja iniciou a preparacao.",
+                orderConfirmDelivery: "Entrega",
+                orderConfirmEta: "Entrega em 24h em Maputo",
+                orderConfirmCTA: "Ver mais produtos",
+                orderConfirmHome: "Voltar ao inicio",
+                orderConfirmReference: "Referencia",
+                orderConfirmSummary: "Detalhe do pedido",
+                orderConfirmPayment: "Pagamento",
+                orderConfirmPhone: "Telefone",
+                orderConfirmEmpty: "Ainda nao existe um pedido recente para mostrar.",
+                sizeLabel: "Tamanho",
+                paymentMpesa: "M-Pesa",
+                paymentCard: "Cartao",
+                paymentCashPickup: "Pagar no levantamento",
+                searchRouteCampo: "Rotacao elite para campo",
+                searchRouteSociety: "Selecao rapida para society",
+                searchRouteNew: "Novidades",
+                home: "Inicio",
+                search: "Pesquisa",
+                account: "Conta",
+                favorites: "Favoritos",
+                cart: "Saco",
+                newArrivals: "Novidades",
+                accountPreview: "Vista da conta",
+                shopBySurface: "Comprar por piso",
+                service: "Servico",
+                maputo24h: "Maputo 24h",
+                maputo24hBody: "Stock curado, confirmacao no mesmo dia e janelas de entrega rapidas.",
+                zeroFooter: "Zero Rodape",
+                zeroFooterBody: "A experiencia termina de forma limpa no produto e na narrativa."
+            },
+            en: {
+                orderNow: "Order Now",
+                addToCart: "Add",
+                checkout: "Checkout",
+                searchTitle: "Search",
+                searchHeading: "Direct catalogue search.",
+                searchPlaceholder: "Search by model, surface or brand",
+                quickRoutes: "Quick routes",
+                searchLogic: "Search logic",
+                searchLogicBody: "Search by brand, surface or silo. Results prioritise available stock.",
+                cartTitle: "Bag",
+                cartHeading: "Selection",
+                subtotal: "Subtotal",
+                continueBrowsing: "Continue",
+                accountToast: "Account area unavailable in this build.",
+                wishlistToast: "Favourites unavailable in this build.",
+                addedToWishlist: "Item saved to favourites.",
+                removedFromWishlist: "Item removed from favourites.",
+                wishlistTitle: "Saved edit",
+                wishlistEmpty: "You do not have any favourites yet.",
+                wishlistEmptyCTA: "View selection",
+                wishlistAddToBag: "Add to bag",
+                sizeGuideTrigger: "Size guide →",
+                sizeGuideTitle: "Size guide",
+                sizeGuideNote: "Measure your foot from the heel to the tip of the longest toe.",
+                quickAddPrompt: "Choose a size",
+                relatedProductsLabel: "You may also like",
+                processingPayment: "Processing payment...",
+                closeAction: "Close",
+                aboutNav: "The Brand",
+                aboutMenu: "Our story",
+                aboutHeroLabel: "Golden Kicks",
+                aboutHeroTitle: "Premium curation for the game in Maputo.",
+                aboutBlock1Title: "Who we are",
+                aboutBlock1Body: "Golden Kicks was built in Maputo with a strict eye for the game, the material and the silhouette. We curate premium football boots for those who want performance, authenticity and a more restrained presence.",
+                aboutBlock2Title: "Value proposition",
+                aboutBlock2Body: "We work with international stock sourced from the United States, Europe and Asia. We keep 24h delivery in Maputo to shorten the distance between the right choice and match day.",
+                aboutBlock3Title: "Standards",
+                aboutBlock3Body: "Every pair is reviewed before dispatch. We check finishing, visual consistency, sizing and presentation so the experience arrives clean, precise and without noise.",
+                aboutTagline: "The game demands detail. So does curation.",
+                aboutCTA: "Explore the selection ->",
+                addedToCart: "Item added to bag.",
+                removedFromCart: "Item removed from bag.",
+                addBeforeCheckout: "Add an item before checkout.",
+                paymentConfirmed: "Payment confirmed. Receipt sent.",
+                orderConfirmTitle: "Order confirmed.",
+                orderConfirmSubtitle: "We have received your order and the Golden Kicks team has already started preparing it.",
+                orderConfirmDelivery: "Delivery",
+                orderConfirmEta: "24h delivery in Maputo",
+                orderConfirmCTA: "View more products",
+                orderConfirmHome: "Back to home",
+                orderConfirmReference: "Reference",
+                orderConfirmSummary: "Order detail",
+                orderConfirmPayment: "Payment",
+                orderConfirmPhone: "Phone",
+                orderConfirmEmpty: "There is no recent order to display yet.",
+                sizeLabel: "Size",
+                paymentMpesa: "M-Pesa",
+                paymentCard: "Card",
+                paymentCashPickup: "Pay on pickup",
+                searchRouteCampo: "Elite field rotation",
+                searchRouteSociety: "Quick turf selection",
+                searchRouteNew: "New arrivals",
+                home: "Home",
+                search: "Search",
+                account: "Account",
+                favorites: "Favourites",
+                cart: "Cart",
+                newArrivals: "New arrivals",
+                accountPreview: "Account preview",
+                shopBySurface: "Shop by surface",
+                service: "Service",
+                maputo24h: "Maputo 24h",
+                maputo24hBody: "Curated stock, same-day confirmation and fast delivery windows.",
+                zeroFooter: "Zero Footer",
+                zeroFooterBody: "The experience ends cleanly on product and story, never on clutter."
+            }
+        };
+
+        const collectionMeta = {
+            all: {
+                label: { pt: "Selecao Editorial", en: "Editorial Selection" },
+                title: { pt: "Pares curados para cada piso.", en: "Curated pairs for every surface." },
+                description: { pt: "Contencao de luxo por fora. Performance pronta para o jogo em cada rotacao.", en: "Luxury restraint on the outside. Match-ready performance in every rotation." }
+            },
+            campo: {
+                label: { pt: "Campo (FG)", en: "Firm Ground (FG)" },
+                title: { pt: "Rotacao de relva natural com tracao elite.", en: "Natural grass rotation with elite traction." },
+                description: { pt: "Silhuetas de controlo e botas de velocidade afinadas para espaco aberto.", en: "Control-first silhouettes and speed-led boots tuned for open-field play." }
+            },
+            society: {
+                label: { pt: "Society (TF)", en: "Turf (TF)" },
+                title: { pt: "Mudancas rapidas para turf e campos citadinos.", en: "Fast cuts built for turf and city cages." },
+                description: { pt: "Conforto responsivo, aderencia baixa e acabamentos premium para ritmos curtos.", en: "Responsive comfort, low-profile grip and premium finishes for smaller-sided rhythm." }
+            },
+            futsal: {
+                label: { pt: "Futsal (IC)", en: "Indoor Court (IC)" },
+                title: { pt: "Precisao indoor com toque curto e confiante.", en: "Indoor precision with close-touch confidence." },
+                description: { pt: "Compacto, direto e equilibrado para momentos mais apertados e transicoes mais limpas.", en: "Compact, direct and balanced for tighter moments and sharper transitions." }
+            }
+        };
+
+        const products = [
+            {
+                id: "phantom-gx-elite-fg",
+                name: "Phantom GX Elite FG",
+                silo: "Controlo",
+                level: "Elite",
+                brand: "Nike",
+                category: "campo",
+                surface: "FG",
+                price: 18500,
+                badge: "New Arrival",
+                subtitle: { pt: "Controlo orientado ao toque para relva natural.", en: "Touch-led control for natural grass." },
+                description: { pt: "Upper texturizado, calcanhar estavel e zona de remate limpa para um primeiro toque mais composto.", en: "Textured upper, stable heel counter and a clean strike zone for composed first-touch play." },
+                image: "./assets/PRODUCTS/GX Firm Ground Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/GX Firm Ground Angle 2.png",
+                gallery: ["./assets/PRODUCTS/GX Firm Ground Angle 1.png", "./assets/PRODUCTS/GX Firm Ground Angle 2.png"],
+                sizes: [39, 40, 41, 42, 43],
+                color: "Phantom / Black"
+            },
+            {
+                id: "mercurial-superfly-elite",
+                name: "Mercurial Superfly Elite",
+                silo: "Velocidade",
+                level: "Elite",
+                brand: "Nike",
+                category: "campo",
+                surface: "FG",
+                price: 19200,
+                badge: "Fast Lane",
+                subtitle: { pt: "Velocidade explosiva com colarinho firme.", en: "Explosive pace with a locked-in collar." },
+                description: { pt: "Uma silhueta de velocidade com melhor bloqueio do calcanhar, impulso agressivo na biqueira e acabamento de alto contraste.", en: "A speed silhouette with sharper heel lockdown, aggressive toe spring and high-contrast finish." },
+                image: "./assets/PRODUCTS/Superfly Firm Ground Angle 1.jpg",
+                hoverImage: "./assets/PRODUCTS/Superfly Firm Ground Angle 2.jpg",
+                gallery: ["./assets/PRODUCTS/Superfly Firm Ground Angle 1.jpg", "./assets/PRODUCTS/Superfly Firm Ground Angle 2.jpg"],
+                sizes: [40, 41, 42, 43, 44],
+                color: "Crimson / Bone"
+            },
+            {
+                id: "f50-elite-fg",
+                name: "F50 Elite FG",
+                silo: "Velocidade",
+                level: "Elite",
+                brand: "Adidas",
+                category: "campo",
+                surface: "FG",
+                price: 18000,
+                badge: "Speed Icon",
+                subtitle: { pt: "Ultra leveza e toque direto.", en: "Ultra lightweight and direct touch." },
+                description: { pt: "Design focado na velocidade pura. Parte superior minimalista e placa flexivel para maxima agilidade.", en: "Design focused on pure speed. Minimalist upper and flexible plate for maximum agility." },
+                image: "./assets/PRODUCTS/F50 Firm Ground Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/F50 Firm Ground Angle 2.png",
+                gallery: ["./assets/PRODUCTS/F50 Firm Ground Angle 1.png", "./assets/PRODUCTS/F50 Firm Ground Angle 2.png"],
+                sizes: [39, 40, 41, 42, 43],
+                color: "White / Solar Red"
+            },
+            {
+                id: "f50-league-tf",
+                name: "F50 League TF",
+                silo: "Velocidade",
+                level: "League",
+                brand: "Adidas",
+                category: "society",
+                surface: "TF",
+                price: 13500,
+                badge: "Turf Ready",
+                subtitle: { pt: "Agressividade controlada para ritmos de turf.", en: "Controlled aggression for turf tempos." },
+                description: { pt: "Sola de perfil baixo, sensacao de remate direta e base estavel para mudancas de direcao rapidas.", en: "Low-profile tooling, direct strike feel and a stable base for quick directional changes." },
+                image: "./assets/PRODUCTS/F50 Turf Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/F50 Turf Angle 2.png",
+                gallery: ["./assets/PRODUCTS/F50 Turf Angle 1.png", "./assets/PRODUCTS/F50 Turf Angle 2.png"],
+                sizes: [39, 40, 41, 42, 43],
+                color: "White / Carbon"
+            },
+            {
+                id: "tiempo-legend-tf",
+                name: "Tiempo Legend TF",
+                silo: "Toque",
+                level: "Pro",
+                brand: "Nike",
+                category: "society",
+                surface: "TF",
+                price: 14000,
+                badge: "Classic Touch",
+                subtitle: { pt: "Conforto rico com postura de controlo.", en: "Plush comfort with a control stance." },
+                description: { pt: "Couro premium, toque macio e sola compacta para cortes de movimento seguros.", en: "Premium leather, soft touch and a compact outsole for confident directional cuts." },
+                image: "./assets/PRODUCTS/Tiempo Turf Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/Tiempo Turf Angle 2.png",
+                gallery: ["./assets/PRODUCTS/Tiempo Turf Angle 1.png", "./assets/PRODUCTS/Tiempo Turf Angle 2.png"],
+                sizes: [40, 41, 42, 43],
+                color: "Black / Yellow"
+            },
+            {
+                id: "mercurial-superfly-indoor",
+                name: "Mercurial Superfly IC",
+                silo: "Velocidade",
+                level: "Pro",
+                brand: "Nike",
+                category: "futsal",
+                surface: "IC",
+                price: 14500,
+                badge: "Indoor Speed",
+                subtitle: { pt: "Design aerodinamico para quadras fechadas.", en: "Aerodynamic design for indoor courts." },
+                description: { pt: "Resposta instantanea e tracao focada no piso liso. Perfeito para alas rapidos.", en: "Instant response and traction focused on flat courts. Perfect for fast wingers." },
+                image: "./assets/PRODUCTS/Superfly Indoor Ground Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/Superfly Indoor Ground Angle 2.png",
+                gallery: ["./assets/PRODUCTS/Superfly Indoor Ground Angle 1.png", "./assets/PRODUCTS/Superfly Indoor Ground Angle 2.png"],
+                sizes: [39, 40, 41, 42],
+                color: "Voltage Cherry / Black"
+            },
+            {
+                id: "top-sala-competition",
+                name: "Top Sala Competition",
+                silo: "Toque",
+                level: "Pro",
+                brand: "Joma",
+                category: "futsal",
+                surface: "IC",
+                price: 9800,
+                badge: "Match Floor",
+                subtitle: { pt: "Aderencia indoor fiavel com perfil classico.", en: "Reliable indoor grip with classic profile." },
+                description: { pt: "Uma opcao equilibrada de futsal com medio pe estavel e zona de contacto suave.", en: "A balanced futsal option with a stable midfoot and smooth contact patch." },
+                image: "./assets/PRODUCTS/Joma Indoor Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/Joma Indoor Angle 2.png",
+                gallery: ["./assets/PRODUCTS/Joma Indoor Angle 1.png", "./assets/PRODUCTS/Joma Indoor Angle 2.png"],
+                sizes: [38, 39, 40, 41, 42],
+                color: "White / Ash"
+            },
+            {
+                id: "mizuno-morelia-tf",
+                name: "Morelia Neo TF",
+                silo: "Toque",
+                level: "Elite",
+                brand: "Mizuno",
+                category: "society",
+                surface: "TF",
+                price: 15500,
+                badge: "Made in Japan",
+                subtitle: { pt: "Ajuste premium adaptativo para society.", en: "Premium adaptive fit for turf." },
+                description: { pt: "Materiais excecionais com K-leather para o toque mais puro possivel num piso sintetico.", en: "Exceptional materials with K-leather for the purest possible touch on artificial turf." },
+                image: "./assets/PRODUCTS/Mizuno Turf Angle 1.png",
+                hoverImage: "./assets/PRODUCTS/Mizuno Turf Angle 2.png",
+                gallery: ["./assets/PRODUCTS/Mizuno Turf Angle 1.png", "./assets/PRODUCTS/Mizuno Turf Angle 2.png"],
+                sizes: [39, 40, 41, 42, 43],
+                color: "White / Blue"
+            }
+        ];
+
+        const sizeGuideRows = [
+            { eu: 36, uk: 3.5, us: 4.5 },
+            { eu: 37, uk: 4, us: 5 },
+            { eu: 38, uk: 5, us: 6 },
+            { eu: 39, uk: 5.5, us: 6.5 },
+            { eu: 40, uk: 6.5, us: 7.5 },
+            { eu: 41, uk: 7, us: 8 },
+            { eu: 42, uk: 8, us: 9 },
+            { eu: 43, uk: 8.5, us: 9.5 },
+            { eu: 44, uk: 9.5, us: 10.5 },
+            { eu: 45, uk: 10, us: 11 },
+            { eu: 46, uk: 11, us: 12 },
+            { eu: 47, uk: 12, us: 13 }
+        ];
+
+        // APP
+        const app = {
+            state: {
+                currentView: "home",
+                locale: "pt",
+                activeCategory: "all",
+                activeBrand: "all",
+                advancedFilters: { surfaces: [], silos: [], brands: [], levels: [] },
+                currentProductId: "phantom-gx-elite-fg",
+                selectedSize: 41,
+                activeGalleryImage: "./Desktop%20Version/063ed09e0ceaad4789570cc383c9e287.jpg",
+                searchOpen: false,
+                cartOpen: false,
+                wishlistOpen: false,
+                sizeGuideOpen: false,
+                sizePickerOpen: false,
+                menuOpen: false,
+                cart: [],
+                wishlist: [],
+                checkout: {
+                    name: "",
+                    phone: "",
+                    address: "",
+                    city: "maputo",
+                    delivery: "pickup",
+                    payment: "mpesa",
+                    note: ""
+                },
+                filterDrawerOpen: false,
+                lastOrder: null,
+                sizeGuideTouchStartY: null,
+                sizePickerProductId: null,
+                pdpActionState: { action: null, phase: "idle" },
+                filterGroupState: { surfaces: true, silos: true, brands: true, levels: true }
+            },
+
+            init() {
+                this.applyStaticLocale();
+                this.renderHome();
+                this.renderPLP();
+                this.renderPDP();
+                this.renderCheckout();
+                this.renderAbout();
+                this.renderCart();
+                this.renderWishlist();
+                this.renderSizeGuide();
+                this.renderSizePicker();
+                this.renderSearchResults("");
+                this.updateBadges();
+                this.syncNav();
+                this.syncHeaderMode();
+                this.attachOverlayEvents();
+                window.addEventListener("scroll", () => this.handleScroll(), { passive: true });
+                this.handleScroll();
+                lucide.createIcons();
+            },
+
+            t(key) {
+                return (translations[this.state.locale] && translations[this.state.locale][key]) || key;
+            },
+
+            l(value) {
+                if (typeof value === "string") return value;
+                return value[this.state.locale] || value.pt || value.en || "";
+            },
+
+            setLocale(locale) {
+                this.state.locale = locale;
+                this.applyStaticLocale();
+                if (this.state.currentView === "home") this.renderHome();
+                if (this.state.currentView === "plp") this.renderPLP();
+                if (this.state.currentView === "pdp") this.renderPDP();
+                if (this.state.currentView === "checkout") this.renderCheckout();
+                if (this.state.currentView === "confirmation") this.renderOrderConfirmation();
+                if (this.state.currentView === "about") this.renderAbout();
+                this.renderCart();
+                this.renderWishlist();
+                this.renderSizeGuide();
+                this.renderSizePicker();
+                this.renderSearchResults(document.getElementById("search-input")?.value || "");
+                this.syncHeaderMode();
+                lucide.createIcons();
+            },
+
+            syncHeaderMode() {
+                document.body.classList.toggle("desktop-home-hero", this.state.currentView === "home");
+                this.handleScroll();
+            },
+
+            handleScroll() {
+                const siteHeader = document.getElementById("site-header");
+                if (!siteHeader) return;
+
+                const onHome = this.state.currentView === "home";
+                const scrolledY = window.scrollY;
+                const desktopHomeTop = onHome && scrolledY <= 60;
+                const desktopHomeScrolled = onHome && scrolledY > 60;
+                const mobileSearchHidden = onHome && scrolledY > 40;
+
+                siteHeader.classList.toggle("header-home-top", desktopHomeTop);
+                siteHeader.classList.toggle("header-home-scrolled", desktopHomeScrolled);
+                siteHeader.classList.toggle("header-solid", !onHome);
+                siteHeader.classList.toggle("mobile-search-hidden", mobileSearchHidden);
+            },
+
+            applyStaticLocale() {
+                const setText = (id, value) => {
+                    const node = document.getElementById(id);
+                    if (node) node.textContent = value;
+                };
+                setText("desktop-link-campo", "Campo");
+                setText("desktop-link-society", "Society");
+                setText("desktop-link-futsal", "Futsal");
+                setText("desktop-link-drop", this.t("newArrivals"));
+                setText("desktop-link-about", this.t("aboutNav"));
+                setText("mobile-menu-shop-title", this.t("shopBySurface"));
+                setText("mobile-menu-new-arrivals", this.t("newArrivals"));
+                setText("mobile-menu-about", this.t("aboutMenu"));
+                setText("mobile-menu-service-title", this.t("service"));
+                setText("mobile-menu-maputo-title", this.t("maputo24h"));
+                setText("mobile-menu-maputo-body", this.t("maputo24hBody"));
+                setText("mobile-menu-absence-title", this.t("zeroFooter"));
+                setText("mobile-menu-absence-body", this.t("zeroFooterBody"));
+                setText("mobile-menu-account-preview", this.t("accountPreview"));
+                setText("search-overlay-title", this.t("searchTitle"));
+                setText("search-overlay-heading", this.t("searchHeading"));
+                setText("search-routes-title", this.t("quickRoutes"));
+                setText("search-route-campo", this.t("searchRouteCampo"));
+                setText("search-route-society", this.t("searchRouteSociety"));
+                setText("search-route-new", this.t("searchRouteNew"));
+                setText("search-logic-title", this.t("searchLogic"));
+                setText("search-logic-body", this.t("searchLogicBody"));
+                setText("cart-title", this.t("cartTitle"));
+                setText("cart-heading", this.t("cartHeading"));
+                setText("wishlist-label", this.t("favorites"));
+                setText("wishlist-heading", this.t("wishlistTitle"));
+                setText("cart-subtotal-label", this.t("subtotal"));
+                setText("cart-checkout-btn", this.t("checkout"));
+                setText("cart-continue-btn", this.t("continueBrowsing"));
+                setText("mobile-nav-home", this.t("home"));
+                setText("mobile-nav-search", this.t("search"));
+                setText("mobile-nav-account", this.t("account"));
+                setText("mobile-nav-plp", "Ver Tudo");
+                document.getElementById("desktop-search-btn")?.setAttribute("aria-label", this.t("search"));
+                document.getElementById("desktop-account-btn")?.setAttribute("aria-label", this.t("account"));
+                document.getElementById("desktop-favorites-btn")?.setAttribute("aria-label", this.t("favorites"));
+                document.getElementById("desktop-cart-btn")?.setAttribute("aria-label", this.t("cart"));
+                document.getElementById("mobile-wishlist-btn")?.setAttribute("aria-label", this.t("favorites"));
+                const searchInput = document.getElementById("search-input");
+                if (searchInput) searchInput.placeholder = this.t("searchPlaceholder");
+            },
+
+            attachOverlayEvents() {
+                document.getElementById("mobile-menu-overlay").addEventListener("click", () => this.toggleMobileMenu(false));
+                document.getElementById("cart-overlay").addEventListener("click", () => this.toggleCart(false));
+                document.getElementById("wishlist-overlay").addEventListener("click", () => this.toggleWishlistDrawer(false));
+                document.getElementById("size-guide-overlay").addEventListener("click", () => this.toggleSizeGuide(false));
+                document.getElementById("size-picker-overlay").addEventListener("click", () => this.closeSizePicker());
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape" && this.state.sizeGuideOpen) this.toggleSizeGuide(false);
+                    if (event.key === "Escape" && this.state.sizePickerOpen) this.closeSizePicker();
+                });
+                const sizeGuideModal = document.getElementById("size-guide-modal");
+                sizeGuideModal?.addEventListener("touchstart", (event) => this.handleSizeGuideTouchStart(event), { passive: true });
+                sizeGuideModal?.addEventListener("touchend", (event) => this.handleSizeGuideTouchEnd(event), { passive: true });
+            },
+
+            formatMoney(value) {
+                const amount = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                return settings.currencyPosition === "prefix" ? `${settings.currencySymbol} ${amount}` : `${amount} ${settings.currencySymbol}`;
+            },
+
+            getProduct(id) {
+                return products.find((product) => product.id === id) || products[0];
+            },
+
+            getProductsByCategory(category) {
+                return products.filter((product) => {
+                    // Legacy single-string router filters (used for header nav)
+                    const matchCategory = category === "all" || product.category === category;
+                    const matchBrand = this.state.activeBrand === "all" || product.brand === this.state.activeBrand;
+                    
+                    // Advanced multi-select sidebar filters
+                    const { surfaces, silos, brands, levels } = this.state.advancedFilters;
+                    
+                    const matchSurface = surfaces.length === 0 || surfaces.includes(product.surface);
+                    const matchSilo = silos.length === 0 || silos.includes(product.silo);
+                    const matchAdvancedBrand = brands.length === 0 || brands.includes(product.brand);
+                    const matchLevel = levels.length === 0 || levels.includes(product.level);
+
+                    return matchCategory && matchBrand && matchSurface && matchSilo && matchAdvancedBrand && matchLevel;
+                });
+            },
+
+            getCartCount() {
+                return this.state.cart.reduce((sum, item) => sum + item.quantity, 0);
+            },
+
+            getCartSubtotal() {
+                return this.state.cart.reduce((sum, item) => {
+                    const product = this.getProduct(item.productId);
+                    return sum + product.price * item.quantity;
+                }, 0);
+            },
+
+            getShippingFee() {
+                const fees = {
+                    pickup: 0,
+                    city: 350,
+                    province: 1200
+                };
+                return fees[this.state.checkout.delivery] || 0;
+            },
+
+            getPaymentLabel(paymentId) {
+                const map = {
+                    mpesa: this.t("paymentMpesa"),
+                    card: this.t("paymentCard"),
+                    cash: this.t("paymentCashPickup")
+                };
+                return map[paymentId] || paymentId;
+            },
+
+            showToast(message) {
+                const toast = document.createElement("div");
+                toast.className = "toast-item toast-enter pointer-events-auto flex items-center gap-3 border border-black bg-white px-4 py-3 shadow-floating";
+                toast.innerHTML = `
+                    <span class="gold-gradient flex h-8 w-8 items-center justify-center text-black">
+                        <i data-lucide="sparkles" class="h-4 w-4"></i>
+                    </span>
+                    <p class="text-sm font-semibold text-black">${message}</p>
+                `;
+                const container = document.getElementById("toast-container");
+                container.appendChild(toast);
+                lucide.createIcons();
+                requestAnimationFrame(() => {
+                    toast.classList.remove("toast-enter");
+                    toast.classList.add("toast-ready");
+                });
+                setTimeout(() => {
+                    toast.classList.remove("toast-ready");
+                    toast.classList.add("toast-exit");
+                    setTimeout(() => toast.remove(), 300);
+                }, 2600);
+            },
+
+            toggleSearch(force) {
+                const open = typeof force === "boolean" ? force : !this.state.searchOpen;
+                this.state.searchOpen = open;
+                const overlay = document.getElementById("search-overlay");
+                overlay.classList.toggle("opacity-0", !open);
+                overlay.classList.toggle("pointer-events-none", !open);
+                if (open) {
+                    setTimeout(() => {
+                        const input = document.getElementById("search-input");
+                        if (input) input.focus();
+                    }, 60);
+                }
+                this.syncBodyLock();
+                this.syncNav();
+            },
+
+            toggleMobileMenu(force) {
+                const open = typeof force === "boolean" ? force : !this.state.menuOpen;
+                this.state.menuOpen = open;
+                const overlay = document.getElementById("mobile-menu-overlay");
+                const panel = document.getElementById("mobile-menu");
+                overlay.classList.toggle("opacity-0", !open);
+                overlay.classList.toggle("pointer-events-none", !open);
+                panel.classList.toggle("-translate-x-full", !open);
+                panel.classList.toggle("pointer-events-none", !open);
+                this.syncBodyLock();
+            },
+
+            toggleCart(force) {
+                const open = typeof force === "boolean" ? force : !this.state.cartOpen;
+                if (open) this.toggleWishlistDrawer(false);
+                this.state.cartOpen = open;
+                const overlay = document.getElementById("cart-overlay");
+                const panel = document.getElementById("cart-drawer");
+                overlay.classList.toggle("opacity-0", !open);
+                overlay.classList.toggle("pointer-events-none", !open);
+                panel.classList.toggle("translate-x-full", !open);
+                panel.classList.toggle("pointer-events-none", !open);
+                this.syncBodyLock();
+                this.syncNav();
+            },
+
+            toggleWishlistDrawer(force) {
+                const open = typeof force === "boolean" ? force : !this.state.wishlistOpen;
+                if (open) this.toggleCart(false);
+                this.state.wishlistOpen = open;
+                this.renderWishlist();
+                const overlay = document.getElementById("wishlist-overlay");
+                const panel = document.getElementById("wishlist-drawer");
+                overlay.classList.toggle("opacity-0", !open);
+                overlay.classList.toggle("pointer-events-none", !open);
+                panel.classList.toggle("translate-x-full", !open);
+                panel.classList.toggle("pointer-events-none", !open);
+                this.syncBodyLock();
+            },
+
+            toggleSizeGuide(force) {
+                const open = typeof force === "boolean" ? force : !this.state.sizeGuideOpen;
+                this.state.sizeGuideOpen = open;
+                if (!open) this.state.sizeGuideTouchStartY = null;
+                const overlay = document.getElementById("size-guide-overlay");
+                const modal = document.getElementById("size-guide-modal");
+                overlay.classList.toggle("opacity-0", !open);
+                overlay.classList.toggle("pointer-events-none", !open);
+                modal.classList.toggle("size-guide-open", open);
+                modal.classList.toggle("pointer-events-none", !open);
+                this.syncBodyLock();
+            },
+
+            openSizePicker(productId) {
+                const product = this.getProduct(productId);
+                this.state.sizePickerProductId = product.id;
+                this.state.sizePickerOpen = true;
+                this.renderSizePicker();
+                const overlay = document.getElementById("size-picker-overlay");
+                const sheet = document.getElementById("size-picker-sheet");
+                overlay.classList.remove("opacity-0", "pointer-events-none");
+                sheet.classList.add("size-picker-open");
+                sheet.classList.remove("pointer-events-none");
+                this.syncBodyLock();
+            },
+
+            closeSizePicker() {
+                this.state.sizePickerOpen = false;
+                const overlay = document.getElementById("size-picker-overlay");
+                const sheet = document.getElementById("size-picker-sheet");
+                overlay.classList.add("opacity-0", "pointer-events-none");
+                sheet.classList.remove("size-picker-open");
+                sheet.classList.add("pointer-events-none");
+                this.syncBodyLock();
+            },
+
+            toggleFilterDrawer(force) {
+                const open = typeof force === "boolean" ? force : !this.state.filterDrawerOpen;
+                this.state.filterDrawerOpen = open;
+                const overlay = document.getElementById("filter-drawer-overlay");
+                const panel = document.getElementById("filter-drawer");
+                if(overlay) {
+                    overlay.classList.toggle("opacity-0", !open);
+                    overlay.classList.toggle("pointer-events-none", !open);
+                }
+                if(panel) {
+                    panel.classList.toggle("translate-y-full", !open);
+                    panel.classList.toggle("pointer-events-none", !open);
+                }
+                this.syncBodyLock();
+                this.syncNav();
+            },
+
+            handleSizeGuideTouchStart(event) {
+                if (window.innerWidth >= 1024) return;
+                this.state.sizeGuideTouchStartY = event.changedTouches[0]?.clientY ?? null;
+            },
+
+            handleSizeGuideTouchEnd(event) {
+                if (window.innerWidth >= 1024) return;
+                const startY = this.state.sizeGuideTouchStartY;
+                if (startY == null) return;
+                const endY = event.changedTouches[0]?.clientY ?? startY;
+                this.state.sizeGuideTouchStartY = null;
+                if (endY - startY > 80) this.toggleSizeGuide(false);
+            },
+
+            syncBodyLock() {
+                const shouldLock = this.state.searchOpen || this.state.menuOpen || this.state.cartOpen || this.state.wishlistOpen || this.state.sizeGuideOpen || this.state.sizePickerOpen || this.state.filterDrawerOpen;
+                document.body.classList.toggle("overflow-hidden", shouldLock);
+            },
+
+            syncNav() {
+                const routes = ["home", "search", "account", "plp"];
+                routes.forEach((route) => {
+                    const btn = document.querySelector(`[data-mobile-route="${route}"]`);
+                    const lbl = document.getElementById(`mobile-nav-${route}`);
+                    if (!btn) return;
+                    
+                    let active = false;
+                    if (route === "home" && this.state.currentView === "home" && !this.state.searchOpen) active = true;
+                    if (route === "search" && this.state.searchOpen) active = true;
+                    if (route === "plp" && this.state.currentView === "plp" && !this.state.searchOpen && !this.state.filterDrawerOpen) active = true;
+
+                    btn.classList.toggle("text-black", active);
+                    btn.classList.toggle("active", active); // For custom pseudo classes
+                    btn.classList.toggle("text-neutral-400", !active);
+                });
+            },
+
+            toggleAdvancedFilter(group, option) {
+                const current = this.state.advancedFilters[group];
+                if (!Array.isArray(current)) return;
+                if (current.includes(option)) {
+                    this.state.advancedFilters[group] = current.filter(item => item !== option);
+                } else {
+                    this.state.advancedFilters[group].push(option);
+                }
+                if (this.state.currentView === 'plp') {
+                    this.renderPLP();
+                }
+                lucide.createIcons();
+            },
+
+            navigate(view, options = {}) {
+                if (this.state.filterDrawerOpen) this.toggleFilterDrawer(false);
+                if (this.state.sizeGuideOpen) this.toggleSizeGuide(false);
+                if (this.state.sizePickerOpen) this.closeSizePicker();
+                
+                if (options.category) {
+                    this.resetAdvancedFilters();
+                    this.state.activeCategory = options.category;
+                    this.state.activeBrand = "all";
+                }
+                if (options.brand) {
+                    this.resetAdvancedFilters();
+                    this.state.activeBrand = options.brand;
+                    this.state.activeCategory = "all";
+                }
+
+                if (view === "pdp" && options.productId) {
+                    const product = this.getProduct(options.productId);
+                    this.state.currentProductId = product.id;
+                    this.state.selectedSize = product.sizes[0];
+                    this.state.activeGalleryImage = product.gallery[0];
+                }
+
+                this.state.currentView = view;
+
+                document.getElementById("view-home").classList.add("hidden");
+                document.getElementById("view-plp").classList.add("hidden");
+                document.getElementById("view-pdp").classList.add("hidden");
+                document.getElementById("view-checkout").classList.add("hidden");
+                document.getElementById("view-confirmation").classList.add("hidden");
+                document.getElementById("view-about").classList.add("hidden");
+
+                if (view === "home") {
+                    this.renderHome();
+                    document.getElementById("view-home").classList.remove("hidden");
+                }
+
+                if (view === "plp") {
+                    this.renderPLP();
+                    document.getElementById("view-plp").classList.remove("hidden");
+                }
+
+                if (view === "pdp") {
+                    this.renderPDP();
+                    document.getElementById("view-pdp").classList.remove("hidden");
+                }
+
+                if (view === "checkout") {
+                    this.renderCheckout();
+                    document.getElementById("view-checkout").classList.remove("hidden");
+                    setTimeout(() => this.validateCheckout(), 0);
+                }
+
+                if (view === "confirmation") {
+                    this.renderOrderConfirmation();
+                    document.getElementById("view-confirmation").classList.remove("hidden");
+                }
+
+                if (view === "about") {
+                    this.renderAbout();
+                    document.getElementById("view-about").classList.remove("hidden");
+                }
+
+                const mobileNav = document.getElementById("mobile-nav-bar");
+                if (mobileNav) {
+                    if (view === "pdp" || view === "checkout" || view === "confirmation") {
+                        mobileNav.style.transform = "translate(-50%, 120%)";
+                        mobileNav.style.opacity = "0";
+                        mobileNav.style.pointerEvents = "none";
+                    } else {
+                        mobileNav.style.transform = "translate(-50%, 0)";
+                        mobileNav.style.opacity = "1";
+                        mobileNav.style.pointerEvents = "auto";
+                    }
+                }
+
+                this.toggleSearch(false);
+                this.toggleMobileMenu(false);
+                this.syncHeaderMode();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                this.syncNav();
+                lucide.createIcons();
+            },
+
+            scrollHome(sectionId) {
+                if (this.state.currentView !== "home") {
+                    this.navigate("home");
+                    setTimeout(() => {
+                        const target = document.getElementById(sectionId);
+                        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 100);
+                    return;
+                }
+                const target = document.getElementById(sectionId);
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            },
+
+            resetAdvancedFilters() {
+                this.state.advancedFilters = { surfaces: [], silos: [], brands: [], levels: [] };
+            },
+
+            setCategory(category) {
+                this.state.activeCategory = category;
+                this.resetAdvancedFilters();
+                if (this.state.currentView === "home") this.renderHome();
+                if (this.state.currentView === "plp") this.renderPLP();
+                lucide.createIcons();
+            },
+
+            toggleFilterGroup(groupKey) {
+                this.state.filterGroupState[groupKey] = !this.state.filterGroupState[groupKey];
+                if (this.state.currentView === "plp") this.renderPLP();
+                lucide.createIcons();
+            },
+
+            getRelatedProducts(product) {
+                const sameCategory = products.filter((item) => item.category === product.category && item.id !== product.id);
+                const fallback = products.filter((item) => item.id !== product.id && item.category !== product.category);
+                return [...sameCategory, ...fallback].slice(0, 4);
+            },
+
+            buildSidebar(context = "desktop") {
+                const scopedProducts = products.filter((product) => {
+                    const matchCategory = this.state.activeCategory === "all" || product.category === this.state.activeCategory;
+                    const matchBrand = this.state.activeBrand === "all" || product.brand === this.state.activeBrand;
+                    return matchCategory && matchBrand;
+                });
+                const unique = (key) => [...new Set(scopedProducts.map((product) => product[key]).filter(Boolean))];
+                const surfaceLabels = {
+                    FG: "Campo (FG)",
+                    TF: "Society (TF)",
+                    IC: "Futsal (IC)"
+                };
+                const filterGroups = [
+                    {
+                        key: "surfaces",
+                        title: { pt: "Superficie", en: "Surface" },
+                        options: unique("surface").map((value) => ({ value, label: surfaceLabels[value] || value }))
+                    },
+                    {
+                        key: "silos",
+                        title: { pt: "Silo", en: "Silo" },
+                        options: unique("silo").map((value) => ({ value, label: value }))
+                    },
+                    {
+                        key: "brands",
+                        title: { pt: "Marca", en: "Brand" },
+                        options: unique("brand").map((value) => ({ value, label: value }))
+                    },
+                    {
+                        key: "levels",
+                        title: { pt: "Nivel", en: "Level" },
+                        options: unique("level").map((value) => ({ value, label: value }))
+                    }
+                ].filter((group) => group.options.length);
+                const openClass = context === "mobile" ? "filter-panel-mobile-open" : "filter-panel-desktop-open";
+                
+                return `<div class="flex flex-col w-full">` + filterGroups.map(group => `
+                    <div class="border-b-[0.5px] border-[#D8D8D8] py-5 w-full group">
+                        <button type="button" onclick="app.toggleFilterGroup('${group.key}')" aria-expanded="${this.state.filterGroupState[group.key] ? "true" : "false"}" class="flex w-full items-center justify-between text-left focus:outline-none focus:ring-0">
+                            <span class="text-[15px] font-bold text-[#000000]">${this.l(group.title)}</span>
+                            <i data-lucide="chevron-down" class="h-4 w-4 text-[#000000] transition-transform duration-300 ${this.state.filterGroupState[group.key] ? "" : "rotate-180"}"></i>
+                        </button>
+                        <div class="filter-panel ${this.state.filterGroupState[group.key] ? openClass : "filter-panel-closed"} mt-4">
+                            <div class="flex flex-col gap-3">
+                            ${group.options.map(opt => {
+                                const isActive = this.state.advancedFilters[group.key].includes(opt.value);
+                                return `
+                                <label class="flex items-center gap-3 cursor-pointer group/label" onclick="event.preventDefault(); app.toggleAdvancedFilter('${group.key}', '${opt.value}')">
+                                    <div class="flex h-5 w-5 items-center justify-center rounded-[4px] border-[1px] ${isActive ? 'border-[#000000] bg-[#000000]' : 'border-[#D8D8D8] bg-[#FFFFFF] group-hover/label:border-[#000000]'} transition-colors">
+                                        ${isActive ? '<i data-lucide="check" class="h-3.5 w-3.5 text-white"></i>' : ''}
+                                    </div>
+                                    <span class="text-[14px] text-[#000000] leading-none select-none ${isActive ? 'font-medium' : ''}">${opt.label}</span>
+                                </label>
+                                `;
+                            }).join("")}
+                            </div>
+                        </div>
+                    </div>
+                `).join("") + `</div>`;
+            },
+    
+            buildFilterChips(context) {
+                return Object.keys(collectionMeta).map((key) => {
+                    const active = this.state.activeCategory === key;
+                    return `
+                        <button type="button"
+                            onclick="${context === "plp" ? `app.navigate('plp', { category: '${key}' })` : `app.setCategory('${key}')`}"
+                            class="${active ? "border-black bg-black text-white" : "border-[color:var(--lux-line)] bg-white text-neutral-700 hover:border-black"} inline-flex h-11 items-center justify-center px-4 text-[11px] font-semibold uppercase tracking-[0.24em] lux-ease">
+                            ${this.l(collectionMeta[key].label)}
+                        </button>
+                    `;
+                }).join("");
+            },
+
+            buildProductCard(product) {
+                return `
+                    <article class="product-card group flex h-full flex-col cursor-pointer lux-ease active:scale-[0.98]" onclick="app.navigate('pdp', { productId: '${product.id}' })">
+                        <div class="relative aspect-square md:aspect-[4/5] w-full overflow-hidden bg-[#F2F2F2]">
+                            <img src="${product.image}" alt="${product.name}" class="product-media-primary absolute inset-0 h-full w-full object-contain p-4 mix-blend-darken drop-shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-opacity duration-300">
+                            ${product.hoverImage ? `<img src="${product.hoverImage}" alt="${product.name} alternate" class="product-media-secondary absolute inset-0 h-full w-full object-contain p-4 mix-blend-darken bg-[#F2F2F2] opacity-0 transition-opacity duration-300 group-hover:opacity-100">` : ''}
+                            
+                            <div class="absolute left-3 top-3 inline-flex items-center justify-center rounded-sm bg-white border border-[#D8D8D8] px-2 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-[#000000] shadow-sm">
+                                ${product.badge}
+                            </div>
+
+                            <button type="button" onclick="app.quickAdd('${product.id}', event)" class="absolute bottom-3 right-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--lux-line)] bg-white/95 text-black backdrop-blur-sm lux-ease hover:border-black hover:bg-black hover:text-white lg:group-hover:opacity-0">
+                                <i data-lucide="plus" class="h-4 w-4"></i>
+                            </button>
+
+                            <div class="product-sizes-hover absolute inset-x-0 bottom-0 hidden bg-white/95 px-3 py-3 opacity-0 translate-y-2 backdrop-blur-sm transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 lg:block">
+                                <div class="flex flex-wrap gap-2">
+                                    ${product.sizes.map((size) => `
+                                        <button type="button" onclick="event.stopPropagation(); app.addToCart('${product.id}', ${size}, true)" class="flex h-8 w-10 items-center justify-center border border-lux-line text-[11px] font-semibold text-black lux-ease hover:border-black hover:bg-black hover:text-white">
+                                            ${size}
+                                        </button>
+                                    `).join("")}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-copy flex flex-col pt-4 min-h-[96px] transition-transform duration-300">
+                            ${product.badge === "Promoção" ? '<p class="text-[11px] font-bold text-red-600 mb-1">Oferta Especial</p>' : '<p class="text-[11px] font-bold text-[#BD8A57] mb-1">Stock Autêntico</p>'}
+                            <h3 class="text-[15px] lg:text-[16px] font-semibold leading-tight text-[#000000] truncate">${product.name}</h3>
+                            <p class="text-[13px] lg:text-[14px] text-neutral-500 mt-1 truncate">${this.l(product.subtitle)}</p>
+                            <p class="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400">${product.surface} / ${product.level}</p>
+                            
+                            <div class="mt-2 flex items-center justify-between">
+                                <p class="text-[14px] lg:text-[15px] font-bold text-[#000000]">${this.formatMoney(product.price)}</p>
+                            </div>
+                            
+                            <!-- Hover Swatches -->
+                            <div class="mt-3 flex gap-1.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hidden md:flex">
+                                <div class="h-[14px] w-[14px] rounded-full border border-[#D8D8D8] bg-black"></div>
+                                <div class="h-[14px] w-[14px] rounded-full border border-[#D8D8D8] bg-white"></div>
+                                <div class="h-[14px] w-[14px] rounded-full border border-[#D8D8D8] bg-[#F2F2F2]"></div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            },
+
+            renderHome() {
+                const leadProduct = this.getProduct("phantom-gx-elite-fg");
+                const featured = products.slice(0, 4).map((product) => this.buildProductCard(product)).join("");
+                const editorial = this.getProductsByCategory(this.state.activeCategory).map((product) => this.buildProductCard(product)).join("");
+
+                const brandCardsData = [
+                    { brand: "Nike", img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" },
+                    { brand: "Adidas", img: "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" },
+                    { brand: "Puma", img: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Puma-Logo.svg" },
+                    { brand: "New Balance", img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/New_Balance_logo.svg" },
+                    { brand: "Joma", img: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Joma_logo.svg" },
+                    { brand: "Mizuno", img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Mizuno_logo.svg" }
+                ];
+                const brandsCarousel = brandCardsData.map(item => `
+                    <button type="button" onclick="app.navigate('plp', { brand: '${item.brand}' })" class="flex-none h-[160px] w-[160px] md:h-[240px] md:w-[240px] bg-white rounded-full flex items-center justify-center relative shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-[color:var(--lux-line)] hover:border-black lux-ease group p-8 md:p-12 shrink-0">
+                        <img src="${item.img}" class="h-full w-full object-contain opacity-70 group-hover:opacity-100 lux-ease mix-blend-darken grayscale group-hover:grayscale-0" alt="${item.brand}" onerror="this.outerHTML='<span class=\\'text-sm font-semibold tracking-widest uppercase text-black opacity-80 group-hover:opacity-100\\'>${item.brand}</span>'">
+                    </button>
+                `).join("");
+
+                document.getElementById("view-home").innerHTML = `
+                    <section class="page-enter">
+                            <div class="px-5 pt-2 pb-6 md:hidden">
+                                <article class="relative flex min-h-[380px] w-full flex-col justify-between overflow-hidden rounded-[24px] bg-neutral-900 bg-gradient-to-br from-[#1E1E1E] to-[#121212] px-6 pb-6 pt-8 text-white shadow-soft">
+                                    <div class="relative z-10 w-full max-w-[220px]">
+                                        <p class="text-[10px] font-bold uppercase text-gold-light opacity-90">${this.state.locale === "pt" ? "Coleção Especial" : "Special Collection"}</p>
+                                        <h1 class="mt-2 font-display text-5xl leading-[0.9] tracking-[-0.025em] text-white">${this.state.locale === "pt" ? "50% de Desconto<br>no primeiro par" : "50% Off<br>on first pair"}</h1>
+                                        <button type="button" onclick="app.navigate('pdp', { productId: '${leadProduct.id}' })" class="mt-8 flex h-11 w-fit items-center justify-center rounded-full bg-white px-7 text-[13px] font-bold text-black shadow-sm lux-ease hover:scale-105">
+                                            Ver produto
+                                        </button>
+                                    </div>
+                                    <div class="absolute -right-14 bottom-6 h-[260px] w-[260px]">
+                                        <img src="${leadProduct.image}" alt="Feature" class="h-full w-full object-contain drop-shadow-shoe">
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="hidden lg:block lg:pb-0">
+                                <section class="relative w-full h-screen overflow-hidden bg-[#1a1a1a]">
+                                    <img src="https://cdn.mos.cms.futurecdn.net/YFbuZtsXwTdNBqAEvZs8HT-1200-80.jpg.webp" alt="Golden Kicks hero editorial" class="absolute inset-0 h-full w-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-b from-black/18 via-black/4 to-black/22"></div>
+                                    <div class="relative z-10 flex h-full flex-col items-center justify-center px-12 text-center text-white">
+                                        <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/70">${this.state.locale === "pt" ? "Nova colecao" : "New edit"}</p>
+                                        <h1 class="mt-3 max-w-4xl font-display text-[clamp(4rem,7vw,8rem)] font-semibold leading-[0.88] tracking-[-0.03em] text-white">${this.state.locale === "pt" ? "Legacy Capsule" : "Legacy Capsule"}</h1>
+                                        <p class="mt-4 max-w-xl text-[12px] font-normal uppercase tracking-[0.18em] text-white/72">${this.state.locale === "pt" ? "Uma entrada mais limpa, mais editorial e mais proxima das referencias." : "A cleaner, more editorial campaign entry shaped by the provided references."}</p>
+                                        <button type="button" onclick="app.navigate('pdp', { productId: '${leadProduct.id}' })" class="mt-6 flex h-10 items-center justify-center rounded-full bg-white px-6 text-[10px] font-semibold uppercase tracking-[0.24em] text-black lux-ease hover:bg-[#f0f0f0]">
+                                            ${this.state.locale === "pt" ? "Comprar agora" : "Shop now"}
+                                        </button>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+
+                        <section class="hidden border-b border-[color:var(--lux-line)] bg-[#EAEAEA] py-[40px] pl-[16px] md:py-[60px] md:pl-[32px] lg:block lg:pl-[48px] overflow-hidden">
+                            <div class="flex overflow-x-auto gap-4 pr-4 md:gap-8 no-scrollbar pb-4 items-center">
+                                ${brandsCarousel}
+                            </div>
+                        </section>
+                        
+                        <section class="pt-6 pb-2 lg:hidden">
+                            <div class="flex items-center justify-between px-5 mb-3">
+                                <h2 class="text-xl font-bold text-black">Categorias</h2>
+                                <button type="button" onclick="app.navigate('plp')" class="text-xs font-semibold text-gold-deep lux-ease hover:text-black">Ver tudo</button>
+                            </div>
+                            <div class="flex overflow-x-auto gap-3 px-5 no-scrollbar pb-4 items-center">
+                                <button type="button" onclick="app.navigate('plp')" class="flex h-11 shrink-0 items-center justify-center rounded-xl bg-gold-mid px-5 text-[13px] font-semibold text-white shadow-soft">
+                                    Tudo
+                                </button>
+                                ${brandCardsData.map(item => `
+                                    <button type="button" onclick="app.navigate('plp', { brand: '${item.brand}' })" class="flex h-11 shrink-0 items-center justify-center rounded-xl bg-white px-4 border border-lux-line text-[13px] font-semibold text-black shadow-soft">
+                                        <div class="w-5 h-5 mr-2 flex items-center justify-center">
+                                            <img src="${item.img}" class="max-h-full max-w-full object-contain mix-blend-darken grayscale opacity-70" alt="${item.brand}">
+                                        </div>
+                                        ${item.brand}
+                                    </button>
+                                `).join("")}
+                            </div>
+                        </section>
+
+                        <section id="section-new-arrivals" class="px-4 py-10 md:px-8 md:py-16 lg:px-12">
+                            <div class="mb-8 flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("newArrivals")}</p>
+                                    <h2 class="mt-3 font-display text-4xl leading-[0.9] tracking-[-0.025em] text-black md:text-6xl md:tracking-[-0.03em]">${this.state.locale === "pt" ? "A rotacao da primeira fila." : "The front row rotation."}</h2>
+                                </div>
+                                <button type="button" onclick="app.navigate('plp')" class="hidden md:inline-flex h-11 items-center border border-[color:var(--lux-line)] px-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-black lux-ease hover:border-black">
+                                    ${this.state.locale === "pt" ? "Ver tudo" : "View all"}
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-2 gap-x-3 gap-y-5 px-1 md:grid-cols-4 md:gap-x-6 md:gap-y-14 md:px-0">
+                                ${featured}
+                            </div>
+                        </section>
+
+                        <section class="bg-lux-surface py-10 md:bg-white md:py-0">
+                            <div class="md:hidden grid gap-4 px-4">
+                                <article class="bg-white p-5 shadow-soft">
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Zona de toque</p>
+                                    <p class="mt-3 text-sm leading-6 text-neutral-700">Os CTA principais mantem-se baixos e amplos para respeitar a zona natural do polegar.</p>
+                                </article>
+                                <article class="bg-white p-5 shadow-soft">
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Acentos dourados</p>
+                                    <p class="mt-3 text-sm leading-6 text-neutral-700">O dourado surge apenas como acento, estado ativo e detalhe de conversao.</p>
+                                </article>
+                            </div>
+                            <div class="hidden md:block w-full">
+                                <article class="relative lg:min-h-screen w-full overflow-hidden bg-[#181818]">
+                                    <img src="./Desktop%20Version/cefe7f21600d3c997df6a71a50ca945a.jpg" alt="Golden Kicks editorial desktop banner" class="absolute inset-0 h-full w-full object-cover opacity-76">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/35"></div>
+                                    <div class="relative z-10 flex min-h-[34rem] flex-col items-center justify-center text-center text-white">
+                                        <p class="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/70">Capsula editorial</p>
+                                        <h3 class="mt-4 max-w-3xl text-6xl font-semibold leading-[0.94] tracking-[-0.02em]">Um segundo momento forte para partir a grelha sem parecer repetido.</h3>
+                                        <button type="button" onclick="app.navigate('plp', { category: 'society' })" class="mt-7 flex h-12 items-center justify-center rounded-full bg-white px-7 text-[11px] font-semibold uppercase tracking-[0.28em] text-black lux-ease hover:bg-gold-light">
+                                            Ver colecao
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section id="section-catalog" class="px-4 py-10 md:px-8 md:py-16 lg:px-12">
+                            <div class="max-w-4xl">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("shopBySurface")}</p>
+                                <h2 class="mt-3 font-display text-4xl leading-[0.9] tracking-[-0.025em] text-black md:text-6xl md:tracking-[-0.03em]">${this.l(collectionMeta[this.state.activeCategory].title)}</h2>
+                                <p class="mt-4 max-w-2xl text-base leading-8 text-neutral-700">${this.l(collectionMeta[this.state.activeCategory].description)}</p>
+                            </div>
+                            <div class="mt-8 flex flex-wrap gap-2">
+                                ${this.buildFilterChips("home")}
+                            </div>
+                            <div class="mt-8 grid grid-cols-2 gap-x-3 gap-y-5 px-1 md:grid-cols-4 md:gap-x-6 md:gap-y-14 md:px-0">
+                                ${editorial}
+                            </div>
+                        </section>
+                    </section>
+                `;
+            },
+
+            renderAbout() {
+                document.getElementById("view-about").innerHTML = `
+                    <section class="page-enter">
+                        <section class="relative min-h-[50vw] overflow-hidden bg-black lg:min-h-[72vh]">
+                            <img src="./Desktop%20Version/cefe7f21600d3c997df6a71a50ca945a.jpg" alt="Golden Kicks editorial" class="absolute inset-0 h-full w-full object-cover">
+                            <div class="absolute inset-0 bg-black/45"></div>
+                            <div class="relative z-10 flex min-h-[50vw] items-end px-5 py-10 lg:min-h-[72vh] lg:px-12 lg:py-16">
+                                <div class="max-w-4xl">
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/70">${this.t("aboutHeroLabel")}</p>
+                                    <h1 class="mt-4 font-display text-4xl leading-[0.9] tracking-[-0.03em] text-white lg:text-8xl">${this.t("aboutHeroTitle")}</h1>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mx-auto max-w-3xl px-5 py-10 lg:px-12 lg:py-20">
+                            <article class="border-b border-[color:var(--lux-line)] py-10 lg:py-16">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("aboutBlock1Title")}</p>
+                                <p class="mt-5 text-base leading-8 text-neutral-700">${this.t("aboutBlock1Body")}</p>
+                            </article>
+                            <article class="border-b border-[color:var(--lux-line)] py-10 lg:py-16">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("aboutBlock2Title")}</p>
+                                <p class="mt-5 text-base leading-8 text-neutral-700">${this.t("aboutBlock2Body")}</p>
+                            </article>
+                            <article class="border-b border-[color:var(--lux-line)] py-10 lg:py-16">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("aboutBlock3Title")}</p>
+                                <p class="mt-5 text-base leading-8 text-neutral-700">${this.t("aboutBlock3Body")}</p>
+                            </article>
+                            <div class="py-10 text-center lg:py-16">
+                                <p class="font-display text-3xl leading-[0.92] tracking-[-0.03em] text-black lg:text-5xl">${this.t("aboutTagline")}</p>
+                            </div>
+                            <div class="pb-2 text-center">
+                                <button type="button" onclick="app.navigate('plp', { category: 'all' })" class="text-[11px] font-semibold uppercase tracking-[0.2em] text-black lux-ease hover:text-gold-deep">
+                                    ${this.t("aboutCTA")}
+                                </button>
+                            </div>
+                        </section>
+                    </section>
+                `;
+            },
+
+            renderPLP() {
+                const meta = this.state.activeBrand !== "all" 
+                    ? { label: { pt: "Marca", en: "Brand" }, title: { pt: "Coleção " + this.state.activeBrand, en: this.state.activeBrand + " Edit" }, description: { pt: "Modelos representativos da " + this.state.activeBrand + ".", en: "Representative models from " + this.state.activeBrand + "." } }
+                    : (collectionMeta[this.state.activeCategory] || { title: { pt: "Sem Categoria", en:"No Category" } });
+                const filteredProducts = this.getProductsByCategory(this.state.activeCategory);
+
+                document.getElementById("view-plp").innerHTML = `
+                    <section class="page-enter pt-4 md:pt-8 w-full mx-auto pb-0">
+                        
+                        <!-- Top Header (Breadcrumbs & Title) -->
+                        <div class="flex flex-col px-4 md:px-8 lg:px-12 mb-6">
+                            <div class="flex items-center justify-between w-full">
+                                <div class="flex flex-col">
+                                    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-[14px] font-medium text-[#000000]">
+                                        <button type="button" onclick="app.navigate('home')" class="hover:opacity-70">Futebol</button>
+                                        <span class="text-neutral-400">/</span>
+                                        <span class="text-neutral-500">Chuteiras</span>
+                                    </nav>
+                                    <h1 class="mt-4 font-display text-4xl font-semibold leading-[0.9] tracking-[-0.025em] text-[#000000] md:text-5xl lg:text-7xl lg:tracking-[-0.03em]">
+                                        ${this.state.activeBrand !== "all" ? "Coleção " + this.state.activeBrand : (this.state.activeCategory === "all" ? "Todas as Chuteiras" : this.l(meta.title))} <span class="text-neutral-400 text-[18px] font-normal ml-2">(${filteredProducts.length})</span>
+                                    </h1>
+                                </div>
+                                
+                                <!-- Top Controls (Desktop) -->
+                                <div class="hidden lg:flex items-center gap-6">
+                                    <button type="button" onclick="app.resetAdvancedFilters(); app.renderPLP(); lucide.createIcons();" class="flex items-center gap-2 text-[15px] font-medium text-[#000000] hover:opacity-70 transition-opacity">
+                                        <span>${this.state.locale === "pt" ? "Limpar filtros" : "Clear filters"}</span>
+                                        <i data-lucide="rotate-ccw" class="h-4 w-4"></i>
+                                    </button>
+                                    <p class="text-[13px] font-medium uppercase tracking-[0.16em] text-neutral-500">${filteredProducts.length} ${this.state.locale === "pt" ? "resultados" : "results"}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sticky Mobile Controls -->
+                        <div class="sticky top-[60px] md:top-[68px] z-30 bg-white/80 glass-top border-b-[0.5px] border-t-[0.5px] border-[#D8D8D8] py-2 px-4 lg:hidden mb-6 flex items-center justify-between">
+                            <p class="text-[13px] font-medium text-neutral-500">${filteredProducts.length} Resultados</p>
+                            <button type="button" onclick="app.toggleFilterDrawer(true)" class="flex h-[44px] items-center justify-center rounded-full border-[1px] border-[#D8D8D8] bg-white px-5 transition-all shadow-none active:scale-95">
+                                <span class="text-[13px] font-bold text-[#000000] mr-2">${this.state.locale === "pt" ? "Filtros" : "Filter"}</span>
+                                <i data-lucide="sliders-horizontal" class="h-3.5 w-3.5 text-[#000000]"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex w-full px-4 md:px-8 lg:px-12 items-start mt-4">
+                            <!-- Desktop Sidebar -->
+                            <aside class="hidden lg:block w-[260px] shrink-0 pr-10 self-start sticky" style="top: 100px; height: calc(100vh - 100px); overflow-y: auto;">
+                                ${this.buildSidebar("desktop")}
+                            </aside>
+                            
+                            <!-- Product Grid (3 Columns Desktop, 2 Mobile) -->
+                            <div class="flex-1 w-full pb-0 mb-20 lg:ml-4">
+                                ${filteredProducts.length > 0 ? `
+                                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-10 lg:gap-x-4 lg:gap-y-16">
+                                        ${filteredProducts.map((product) => this.buildProductCard(product)).join("")}
+                                    </div>
+                                ` : `
+                                    <div class="flex flex-col items-center justify-center py-20 text-center w-full min-h-[40vh]">
+                                        <h2 class="text-2xl font-bold text-[#000000] mb-2">${this.state.locale === 'pt' ? 'Sem resultados' : 'No results'}</h2>
+                                        <p class="text-neutral-500">${this.state.locale === 'pt' ? 'Ajuste os filtros para continuar.' : 'Adjust the filters to continue.'}</p>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Mobile Filter Drawer -->
+                    <div id="filter-drawer-overlay" class="pointer-events-none fixed inset-0 z-[60] bg-black/40 opacity-0 transition-opacity duration-500 ease-in-out lg:hidden" onclick="app.toggleFilterDrawer(false)"></div>
+                    <div id="filter-drawer" class="pointer-events-none fixed inset-0 z-[70] flex w-full translate-y-full flex-col bg-[#FFFFFF] transition-transform duration-500 ease-in-out lg:hidden">
+                        <header class="flex h-[68px] shrink-0 items-center justify-between border-b-[0.5px] border-[#D8D8D8] px-5">
+                            <span class="text-xl font-semibold text-[#000000]">${this.state.locale === "pt" ? "Filtros" : "Filters"}</span>
+                            <button type="button" onclick="app.toggleFilterDrawer(false)" class="flex h-11 w-11 items-center justify-center text-[#000000]" aria-label="Fechar">
+                                <i data-lucide="x" class="h-6 w-6 stroke-[1.5px]"></i>
+                            </button>
+                        </header>
+                        <div class="flex-1 overflow-y-auto px-5 py-6 pb-[90px]">
+                            ${this.buildSidebar("mobile")}
+                        </div>
+                        <div class="fixed bottom-0 left-0 w-full border-t-[0.5px] border-[#D8D8D8] bg-white px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+                            <button type="button" onclick="app.toggleFilterDrawer(false)" class="flex h-[48px] w-full items-center justify-center rounded-full bg-[#000000] text-[15px] font-bold text-white transition-opacity hover:opacity-80">
+                                ${this.state.locale === "pt" ? "Aplicar" : "Apply"}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                if (this.state.filterDrawerOpen) this.toggleFilterDrawer(true);
+            },
+            renderPDP() {
+                const product = this.getProduct(this.state.currentProductId);
+                const isWishlisted = this.state.wishlist.includes(product.id);
+                const related = this.getRelatedProducts(product);
+                const pdpAction = this.state.pdpActionState;
+                const anyPdpBusy = pdpAction.phase !== "idle";
+                const orderActive = pdpAction.action === "order" && pdpAction.phase !== "idle";
+                const addActive = pdpAction.action === "add" && pdpAction.phase !== "idle";
+                const orderSuccess = pdpAction.action === "order" && pdpAction.phase === "success";
+                const addSuccess = pdpAction.action === "add" && pdpAction.phase === "success";
+                const orderButtonContent = orderSuccess
+                    ? '<i data-lucide="check" class="h-4 w-4"></i>'
+                    : orderActive
+                        ? '<i data-lucide="loader-2" class="h-4 w-4 animate-spin"></i>'
+                        : this.t("orderNow");
+                const addButtonContent = addSuccess
+                    ? '<i data-lucide="check" class="h-4 w-4"></i>'
+                    : addActive
+                        ? '<i data-lucide="loader-2" class="h-4 w-4 animate-spin"></i>'
+                        : this.t("addToCart");
+
+                document.getElementById("view-pdp").innerHTML = `
+                    <section class="page-enter px-4 pt-5 md:px-8 md:pt-8 lg:px-12">
+                        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">
+                            <button type="button" onclick="app.navigate('home')" class="lux-ease hover:text-black">Inicio</button>
+                            <span>/</span>
+                            <button type="button" onclick="app.navigate('plp', { category: '${product.category}' })" class="lux-ease hover:text-black">${this.l(collectionMeta[product.category].label)}</button>
+                            <span>/</span>
+                            <span class="text-black">${product.name}</span>
+                        </nav>
+
+                        <div class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_420px] lg:gap-10">
+                            <section class="grid gap-4 md:grid-cols-[88px_minmax(0,1fr)]">
+                                <div class="order-2 flex gap-3 overflow-x-auto no-scrollbar md:order-1 md:flex-col">
+                                    ${product.gallery.map((image, index) => `
+                                        <button type="button" onclick="app.changeGalleryImage('${image}')" class="${this.state.activeGalleryImage === image ? "border-black" : "border-transparent"} shrink-0 border bg-[#F4F2EF] p-1 lux-ease hover:border-black">
+                                            <img src="${image}" alt="${product.name} view ${index + 1}" class="h-20 w-16 object-cover md:h-24 md:w-20">
+                                        </button>
+                                    `).join("")}
+                                </div>
+                                <div class="order-1">
+                                    <div class="relative aspect-[4/5] overflow-visible bg-transparent pb-4 md:min-h-[680px] md:overflow-hidden md:bg-[#F4F2EF] md:pb-0 md:shadow-product">
+                                        <img id="pdp-main-image" src="${this.state.activeGalleryImage}" alt="${product.name}" class="h-full w-full object-contain p-4 mix-blend-darken drop-shadow-shoe lux-ease-slow md:p-8 md:drop-shadow-none">
+                                        <div class="pointer-events-none absolute left-0 top-0 inline-flex items-center justify-center rounded-lg bg-gold-light px-2 py-1 text-[9px] font-bold uppercase text-black shadow-sm md:left-4 md:top-4 md:rounded-sm md:px-4 md:py-2 md:text-[11px] md:tracking-[0.2em]">
+                                            ${product.badge}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <aside class="lg:sticky lg:top-24 lg:self-start">
+                                <div class="border border-[color:var(--lux-line)] px-5 py-6 md:px-7 md:py-8">
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep">${product.brand} / ${product.surface}</p>
+                                    <h1 class="mobile-line-clamp-2 mt-4 font-display text-5xl leading-[0.88] tracking-[-0.03em] text-black md:text-7xl lg:text-8xl md:leading-[0.88]">${product.name}</h1>
+                                    <p class="mt-3 text-base leading-8 text-neutral-700">${this.l(product.description)}</p>
+                                    <div class="mt-5 flex items-center justify-between gap-4 border-t border-[color:var(--lux-line)] pt-5">
+                                        <div>
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.state.locale === "pt" ? "Preco" : "Price"}</p>
+                                            <p class="mt-2 text-2xl font-semibold tracking-tight text-black">${this.formatMoney(product.price)}</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.state.locale === "pt" ? "Cor" : "Colour"}</p>
+                                            <p class="mt-2 text-sm text-black">${product.color}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 border-t border-[color:var(--lux-line)] pt-5">
+                                        <div class="mb-3 flex items-start justify-between gap-4">
+                                            <div>
+                                                <div class="flex items-center gap-3">
+                                                    <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("sizeLabel")}</p>
+                                                    <button type="button" onclick="app.toggleSizeGuide(true)" class="hidden text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-deep underline-offset-2 lux-ease hover:underline md:inline-flex">
+                                                        ${this.t("sizeGuideTrigger")}
+                                                    </button>
+                                                </div>
+                                                <button type="button" onclick="app.toggleSizeGuide(true)" class="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-deep underline-offset-2 lux-ease hover:underline md:hidden">
+                                                    ${this.t("sizeGuideTrigger")}
+                                                </button>
+                                            </div>
+                                            <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-black">${this.state.selectedSize}</span>
+                                        </div>
+                                        <div class="grid grid-cols-5 gap-2">
+                                            ${product.sizes.map((size) => `
+                                                <button type="button" onclick="app.selectSize(${size})" class="${this.state.selectedSize === size ? "border-black bg-black text-white shadow-soft" : "border-[color:var(--lux-line)] bg-white text-black hover:border-black"} flex h-11 items-center justify-center rounded-full border text-sm font-bold lux-ease md:rounded-none md:font-semibold">
+                                                    ${size}
+                                                </button>
+                                            `).join("")}
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-5 flex justify-end md:hidden">
+                                        <button type="button" onclick="app.toggleWishlist('${product.id}')" class="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--lux-line)] bg-white text-black lux-ease hover:border-gold-deep hover:text-gold-deep" aria-label="${this.t("favorites")}">
+                                            <i data-lucide="heart" class="h-5 w-5 ${isWishlisted ? "text-gold-deep" : ""}" ${isWishlisted ? 'fill="#BD8A57" stroke="#BD8A57"' : ""}></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="mt-6 border-t border-[color:var(--lux-line)] pt-5 md:hidden">
+                                        <div class="mb-3 flex items-center justify-between">
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.state.locale === "pt" ? "Quantidade" : "Quantity"}</p>
+                                        </div>
+                                        <div class="flex h-12 w-32 items-center justify-between rounded-full border border-lux-line bg-white px-1 shadow-none">
+                                            <button type="button" class="flex h-11 w-11 items-center justify-center rounded-full bg-lux-surface text-black hover:bg-gold-light">-</button>
+                                            <span class="text-[14px] font-bold">1</span>
+                                            <button type="button" class="flex h-11 w-11 items-center justify-center rounded-full bg-lux-surface text-black hover:bg-gold-light">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="hidden md:flex md:mt-6 md:flex-col md:gap-2">
+                                        <button type="button" onclick="app.addCurrentToCart(false)" ${anyPdpBusy ? "disabled" : ""} class="gold-gradient mx-auto flex h-14 w-full max-w-[calc(100%-80px)] items-center justify-center rounded-full text-[14px] font-bold text-black shadow-none lux-ease hover:scale-105 md:h-12 md:max-w-none md:rounded-none md:text-[11px] md:uppercase md:tracking-[0.26em] ${anyPdpBusy ? "pointer-events-none" : ""}">
+                                            ${orderButtonContent}
+                                        </button>
+                                        <button type="button" onclick="app.addCurrentToCart(true)" ${anyPdpBusy ? "disabled" : ""} class="${addSuccess ? "gold-gradient text-black border-transparent" : "bg-black text-white md:border md:border-[color:var(--lux-line)] md:bg-white md:text-black"} flex h-14 w-14 shrink-0 items-center justify-center rounded-full shadow-none lux-ease hover:bg-neutral-800 md:h-12 md:w-full md:rounded-none md:text-[11px] md:font-semibold md:uppercase md:tracking-[0.26em] md:hover:border-black ${anyPdpBusy ? "pointer-events-none" : ""}">
+                                            ${addButtonContent}
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-6 grid gap-4 border-t border-[color:var(--lux-line)] pt-5">
+                                        <article>
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.state.locale === "pt" ? "Entrega" : "Shipping"}</p>
+                                            <p class="mt-2 text-sm leading-6 text-neutral-700">${this.state.locale === "pt" ? "Levantamento no mesmo dia em Maputo. Entrega urbana em 24h. Provincias disponiveis em Finalizar." : "Maputo pickup same day. City delivery in 24h. Province routing available at checkout."}</p>
+                                        </article>
+                                        <article>
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.state.locale === "pt" ? "Ajuste" : "Fit note"}</p>
+                                            <p class="mt-2 text-sm leading-6 text-neutral-700">${this.state.locale === "pt" ? "Forma normal com calcanhar firme. Sobe apenas se quiseres mais folga na biqueira." : "True to size with a locked heel. Size up only if you prefer extra toe room."}</p>
+                                        </article>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <section class="mt-16 border-t border-[color:var(--lux-line)] pt-16 lg:px-8">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("relatedProductsLabel")}</p>
+                            <div class="mt-8 hidden lg:grid lg:grid-cols-4 lg:gap-6">
+                                ${related.map((item) => this.buildProductCard(item)).join("")}
+                            </div>
+                            <div class="mt-6 flex gap-4 overflow-x-auto pb-4 pl-5 pr-5 no-scrollbar lg:hidden -mx-4">
+                                ${related.map((item) => `
+                                    <div class="w-[160px] shrink-0">
+                                        ${this.buildProductCard(item)}
+                                    </div>
+                                `).join("")}
+                            </div>
+                        </section>
+
+                        <div class="fixed bottom-[6rem] left-1/2 z-[60] flex w-[calc(100%-2.5rem)] max-w-sm -translate-x-1/2 flex-col gap-3 rounded-[1.75rem] border border-[color:var(--lux-line)] bg-white p-3 shadow-[0_10px_24px_rgba(0,0,0,0.06)] lg:hidden">
+                            <div class="flex items-center justify-between px-2 pt-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="flex h-5 items-center justify-center rounded-sm bg-lux-surface px-2 text-[10px] font-bold text-black">${this.state.locale === "pt" ? "Tamanho" : "Size"} ${this.state.selectedSize}</span>
+                                    <p class="text-[12px] font-semibold text-neutral-500 line-clamp-1">${product.name}</p>
+                                </div>
+                                <p class="text-[15px] font-bold tracking-tight text-black">${this.formatMoney(product.price)}</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" onclick="app.addCurrentToCart(true)" ${anyPdpBusy ? "disabled" : ""} class="${addSuccess ? "gold-gradient scale-[1.02]" : "bg-[#FFFFFF]"} flex h-[48px] items-center justify-center rounded-[12px] border border-[0.5px] border-[#D8D8D8] text-[11px] font-bold uppercase tracking-[0.2em] text-black lux-ease hover:border-black shadow-none ${anyPdpBusy ? "pointer-events-none" : ""}">
+                                    ${addButtonContent}
+                                </button>
+                                <button type="button" onclick="app.addCurrentToCart(false)" ${anyPdpBusy ? "disabled" : ""} class="gold-gradient flex h-[48px] items-center justify-center rounded-[12px] text-[11px] font-bold uppercase tracking-[0.2em] text-[#000000] shadow-none ${anyPdpBusy ? "pointer-events-none" : ""}">
+                                    ${orderButtonContent}
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                `;
+            },
+
+            renderCheckout() {
+                const subtotal = this.getCartSubtotal();
+                const shipping = this.getShippingFee();
+                const total = subtotal + shipping;
+
+                if (!this.state.cart.length) {
+                    document.getElementById("view-checkout").innerHTML = `
+                        <section class="page-enter px-4 py-10 md:px-8 md:py-16 lg:px-12">
+                            <article class="mx-auto max-w-3xl rounded-[24px] border border-lux-line bg-white px-6 py-10 text-center shadow-soft md:rounded-none md:px-10 md:shadow-none">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Finalizar</p>
+                                <h1 class="mt-4 text-4xl font-semibold leading-none text-black md:text-6xl">${this.state.locale === "pt" ? "Nenhum artigo selecionado." : "No items selected yet."}</h1>
+                                <p class="mt-4 text-base leading-8 text-neutral-700">${this.state.locale === "pt" ? "Volte ao catalogo e adicione pelo menos um artigo antes de finalizar." : "Return to the catalogue and add at least one item before checkout."}</p>
+                                <button type="button" onclick="app.navigate('plp')" class="gold-gradient mt-8 inline-flex h-12 items-center justify-center px-8 text-[11px] font-semibold uppercase tracking-[0.26em] text-black lux-ease hover:scale-[1.01]">
+                                    ${this.state.locale === "pt" ? "Ver catalogo" : "Browse catalogue"}
+                                </button>
+                            </article>
+                        </section>
+                    `;
+                    return;
+                }
+
+                document.getElementById("view-checkout").innerHTML = `
+                    <section class="page-enter bg-[#FAFAFA] px-4 py-6 md:px-8 md:py-10 lg:px-12">
+                        <div class="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px] xl:gap-8">
+                            <section class="rounded-[24px] border border-lux-line bg-white px-5 py-6 shadow-soft md:rounded-none md:px-8 md:py-8 md:shadow-none">
+                                <div class="border-b border-[color:var(--lux-line)] pb-6">
+                                    <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-deep">${this.state.locale === "pt" ? "Finalizar" : "Checkout"}</p>
+                                    <h1 class="mt-3 text-4xl font-semibold leading-none text-black md:text-5xl">${this.state.locale === "pt" ? "Conclusao direta, leitura clara." : "Fast completion, clean interface."}</h1>
+                                    <p class="mt-4 max-w-2xl text-base leading-8 text-neutral-700">${this.state.locale === "pt" ? "O formulario mantem-se leve e o resumo acompanha toda a decisao." : "The form stays light and the summary remains alongside the action."}</p>
+                                </div>
+
+                                <form class="mt-6 grid gap-6" onsubmit="event.preventDefault(); app.processPayment();">
+                                    <section class="grid gap-5 md:grid-cols-2">
+                                        <label class="grid gap-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Nome</span>
+                                            <input id="checkout-name" type="text" value="${this.state.checkout.name}" oninput="app.validateCheckout()" class="h-12 rounded-xl border border-lux-line bg-lux-surface px-4 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent" placeholder="Ex: Joao Silva">
+                                        </label>
+                                        <label class="grid gap-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Telefone</span>
+                                            <input id="checkout-phone" type="tel" value="${this.state.checkout.phone}" oninput="app.validateCheckout()" class="h-12 rounded-xl border border-lux-line bg-lux-surface px-4 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent" placeholder="84 000 0000">
+                                        </label>
+                                        <label class="grid gap-2 md:col-span-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Morada</span>
+                                            <input id="checkout-address" type="text" value="${this.state.checkout.address}" oninput="app.validateCheckout()" class="h-12 rounded-xl border border-lux-line bg-lux-surface px-4 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent" placeholder="Avenida, bairro e referencia">
+                                        </label>
+                                        <label class="grid gap-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Cidade</span>
+                                            <select id="checkout-city" onchange="app.updateCheckoutField('city', this.value)" class="h-12 rounded-xl border border-lux-line bg-lux-surface px-4 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent">
+                                                <option value="maputo" ${this.state.checkout.city === "maputo" ? "selected" : ""}>Maputo</option>
+                                                <option value="matola" ${this.state.checkout.city === "matola" ? "selected" : ""}>Matola</option>
+                                                <option value="beira" ${this.state.checkout.city === "beira" ? "selected" : ""}>Beira</option>
+                                                <option value="nampula" ${this.state.checkout.city === "nampula" ? "selected" : ""}>Nampula</option>
+                                            </select>
+                                        </label>
+                                        <label class="grid gap-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Entrega</span>
+                                            <select id="checkout-delivery" onchange="app.updateCheckoutField('delivery', this.value)" class="h-12 rounded-xl border border-lux-line bg-lux-surface px-4 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent">
+                                                <option value="pickup" ${this.state.checkout.delivery === "pickup" ? "selected" : ""}>Levantamento showroom</option>
+                                                <option value="city" ${this.state.checkout.delivery === "city" ? "selected" : ""}>Entrega urbana</option>
+                                                <option value="province" ${this.state.checkout.delivery === "province" ? "selected" : ""}>Envio provincial</option>
+                                            </select>
+                                        </label>
+                                    </section>
+
+                                    <section class="border-t border-[color:var(--lux-line)] pt-6">
+                                        <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">Pagamento</p>
+                                        <div class="mt-4 grid gap-3 md:grid-cols-3">
+                                            ${[
+                                                { id: "mpesa", label: "M-Pesa" },
+                                                { id: "card", label: "Cartao" },
+                                                { id: "cash", label: "Pagar no levantamento" }
+                                            ].map((option) => `
+                                                <button type="button" onclick="app.updateCheckoutField('payment', '${option.id}')" class="${this.state.checkout.payment === option.id ? "border-black bg-black text-white" : "border-lux-line bg-white text-black hover:border-black"} flex h-14 items-center justify-center border rounded-xl shadow-sm text-[12px] font-bold uppercase tracking-[0.16em] lux-ease md:rounded-none md:font-semibold md:shadow-none md:tracking-[0.24em]">
+                                                    ${option.label}
+                                                </button>
+                                            `).join("")}
+                                        </div>
+                                    </section>
+
+                                    <section class="border-t border-[color:var(--lux-line)] pt-6">
+                                        <label class="grid gap-2">
+                                            <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">Nota</span>
+                                            <textarea id="checkout-note" oninput="app.validateCheckout()" class="min-h-[120px] rounded-xl border border-lux-line bg-lux-surface px-4 py-3 text-sm text-black outline-none lux-ease focus:border-black focus:bg-white md:rounded-none md:bg-transparent" placeholder="Indicacao adicional de entrega">${this.state.checkout.note}</textarea>
+                                        </label>
+                                    </section>
+
+                                    <button id="checkout-submit" type="submit" class="gold-gradient mt-2 flex h-16 items-center justify-center rounded-full text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-sm lux-ease hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-40 md:h-14">
+                                        ${this.state.locale === "pt" ? "Finalizar encomenda" : "Complete order"}
+                                    </button>
+                                </form>
+                            </section>
+
+                            <aside class="rounded-[24px] border border-black bg-black px-5 py-6 text-white shadow-soft md:rounded-none md:px-6 md:py-7 xl:sticky xl:top-24 xl:self-start md:shadow-none">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-gold-light">Resumo</p>
+                                <div class="mt-5 grid gap-4 border-b border-white/15 pb-5">
+                                    ${this.state.cart.map((item) => {
+                                        const product = this.getProduct(item.productId);
+                                        return `
+                                            <article class="grid grid-cols-[72px_minmax(0,1fr)] gap-3">
+                                                <img src="${product.image}" alt="${product.name}" class="h-24 w-[72px] object-cover">
+                                                <div>
+                                                    <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">${product.brand} / ${product.surface}</p>
+                                                    <h3 class="mt-2 text-2xl font-semibold leading-none text-white">${product.name}</h3>
+                                                    <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">Tamanho ${item.size} / Qtd ${item.quantity}</p>
+                                                    <p class="mt-3 text-sm font-semibold text-white">${this.formatMoney(product.price * item.quantity)}</p>
+                                                </div>
+                                            </article>
+                                        `;
+                                    }).join("")}
+                                </div>
+                                <div class="mt-5 grid gap-3 text-sm">
+                                    <div class="flex items-center justify-between text-white/70">
+                                        <span>Subtotal</span>
+                                        <span id="checkout-subtotal">${this.formatMoney(subtotal)}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between text-white/70">
+                                        <span>Entrega</span>
+                                        <span id="checkout-shipping">${shipping ? this.formatMoney(shipping) : "Incluida"}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between border-t border-white/15 pt-3 text-base font-semibold text-white">
+                                        <span>Total</span>
+                                        <span id="checkout-total">${this.formatMoney(total)}</span>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </section>
+                `;
+            },
+
+            renderOrderConfirmation() {
+                const order = this.state.lastOrder;
+                if (!order) {
+                    document.getElementById("view-confirmation").innerHTML = `
+                        <section class="page-enter px-5 py-10 md:px-8 md:py-20">
+                            <div class="mx-auto max-w-2xl text-center">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("orderConfirmReference")}</p>
+                                <h1 class="mt-4 font-display text-4xl leading-[0.9] tracking-[-0.025em] text-black md:text-6xl md:tracking-[-0.03em]">${this.t("orderConfirmEmpty")}</h1>
+                                <div class="mt-8 flex justify-center">
+                                    <button type="button" onclick="app.navigate('plp', { category: 'all' })" class="gold-gradient inline-flex h-14 items-center justify-center px-8 text-[11px] font-semibold uppercase tracking-[0.26em] text-black lux-ease hover:scale-[1.01]">
+                                        ${this.t("orderConfirmCTA")}
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                    return;
+                }
+
+                document.getElementById("view-confirmation").innerHTML = `
+                    <section class="page-enter px-5 py-10 md:px-8 md:py-20">
+                        <div class="mx-auto max-w-2xl">
+                            <div class="text-center">
+                                <div class="mx-auto flex h-12 w-12 items-center justify-center text-gold-deep md:h-[48px] md:w-[48px]">
+                                    <i data-lucide="check-circle" class="h-12 w-12 animate-[pageFadeUp_0.6s_cubic-bezier(0.16,1,0.3,1)]"></i>
+                                </div>
+                                <p class="mt-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("orderConfirmReference")}</p>
+                                <h1 class="mt-4 font-display text-4xl leading-[0.88] tracking-[-0.03em] text-black md:text-6xl">${order.orderNumber}</h1>
+                                <h2 class="mt-5 text-xl font-semibold text-black md:text-2xl">${this.t("orderConfirmTitle")}</h2>
+                                <p class="mt-3 text-base leading-8 text-neutral-700">${this.t("orderConfirmSubtitle")}</p>
+                            </div>
+
+                            <section class="mt-10">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.t("orderConfirmSummary")}</p>
+                                <div class="mt-5 grid gap-4 md:grid-cols-2">
+                                    ${order.items.map((item) => {
+                                        const product = this.getProduct(item.productId);
+                                        return `
+                                            <article class="grid grid-cols-[64px_minmax(0,1fr)] gap-3 border border-[color:var(--lux-line)] bg-white p-3 md:grid-cols-[80px_minmax(0,1fr)] md:p-4">
+                                                <img src="${product.image}" alt="${product.name}" class="h-20 w-16 object-cover md:h-20 md:w-20">
+                                                <div class="min-w-0">
+                                                    <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500">${product.brand} / ${product.surface}</p>
+                                                    <h3 class="mt-2 text-sm font-semibold leading-5 text-black md:text-base">${product.name}</h3>
+                                                    <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">${this.t("sizeLabel")} ${item.size}</p>
+                                                    <p class="mt-3 text-sm font-semibold text-black">${this.formatMoney(product.price * item.quantity)}</p>
+                                                </div>
+                                            </article>
+                                        `;
+                                    }).join("")}
+                                </div>
+                            </section>
+
+                            <section class="mt-10 bg-lux-surface p-4 md:mt-12 md:bg-transparent md:p-0">
+                                <div class="grid gap-3 border-[color:var(--lux-line)] md:border md:bg-white md:p-6">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("orderConfirmPayment")}</span>
+                                        <span class="text-sm font-semibold text-black">${this.getPaymentLabel(order.payment)}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between gap-4">
+                                        <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("orderConfirmPhone")}</span>
+                                        <span class="text-sm font-semibold text-black">${order.phone}</span>
+                                    </div>
+                                    <div class="flex items-center justify-between gap-4">
+                                        <span class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("orderConfirmDelivery")}</span>
+                                        <span class="text-sm font-semibold text-black">${this.t("orderConfirmEta")}</span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="mt-10 grid gap-3 md:mt-12 md:grid-cols-2">
+                                <button type="button" onclick="app.navigate('plp', { category: 'all' })" class="gold-gradient flex h-14 w-full items-center justify-center text-[11px] font-semibold uppercase tracking-[0.26em] text-black lux-ease hover:scale-[1.01]">
+                                    ${this.t("orderConfirmCTA")}
+                                </button>
+                                <button type="button" onclick="app.navigate('home')" class="flex h-14 w-full items-center justify-center border border-[color:var(--lux-line)] bg-white text-[11px] font-semibold uppercase tracking-[0.26em] text-black lux-ease hover:border-black">
+                                    ${this.t("orderConfirmHome")}
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                `;
+            },
+
+            renderCart() {
+                const container = document.getElementById("cart-items");
+                if (!this.state.cart.length) {
+                    container.innerHTML = `
+                        <div class="flex h-full min-h-[320px] flex-col items-center justify-center text-center">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.28em] text-neutral-500">${this.state.locale === "pt" ? "Saco vazio" : "Cart empty"}</p>
+                            <h3 class="mt-4 text-4xl font-semibold leading-none text-black">${this.state.locale === "pt" ? "Selecao vazia." : "Selection not started."}</h3>
+                            <p class="mt-4 max-w-xs text-sm leading-6 text-neutral-700">${this.state.locale === "pt" ? "Adicione um artigo a partir do catalogo para abrir o percurso de finalizacao." : "Add a pair from the catalogue to unlock checkout."}</p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = this.state.cart.map((item, index) => {
+                        const product = this.getProduct(item.productId);
+                        return `
+                            <article class="grid grid-cols-[84px_minmax(0,1fr)] gap-4 border-b border-[color:var(--lux-line)] py-4">
+                                <img src="${product.image}" alt="${product.name}" class="h-28 w-[84px] object-cover">
+                                <div>
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${product.brand} / ${product.surface}</p>
+                                            <h3 class="mt-2 text-[28px] font-semibold leading-none text-black">${product.name}</h3>
+                                        </div>
+                                        <button type="button" onclick="app.removeFromCart(${index})" class="text-neutral-400 lux-ease hover:text-black" aria-label="Remover item">
+                                            <i data-lucide="trash-2" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+                                    <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-neutral-500">Tamanho ${item.size}</p>
+                                    <div class="mt-4 flex items-center justify-between gap-3">
+                                        <div class="flex items-center border border-[color:var(--lux-line)]">
+                                            <button type="button" onclick="app.changeQty(${index}, -1)" class="flex h-11 w-11 items-center justify-center text-black lux-ease hover:bg-lux-surface">-</button>
+                                            <span class="flex h-11 min-w-11 items-center justify-center text-sm font-semibold text-black">${item.quantity}</span>
+                                            <button type="button" onclick="app.changeQty(${index}, 1)" class="flex h-11 w-11 items-center justify-center text-black lux-ease hover:bg-lux-surface">+</button>
+                                        </div>
+                                        <p class="text-sm font-semibold text-black">${this.formatMoney(product.price * item.quantity)}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    }).join("");
+                }
+
+                document.getElementById("cart-subtotal").textContent = this.formatMoney(this.getCartSubtotal());
+                this.updateBadges();
+                lucide.createIcons();
+            },
+
+            renderWishlist() {
+                const container = document.getElementById("wishlist-items");
+                if (!container) return;
+
+                const wishlistProducts = this.state.wishlist
+                    .map((productId) => products.find((product) => product.id === productId))
+                    .filter(Boolean);
+
+                if (!wishlistProducts.length) {
+                    container.innerHTML = `
+                        <div class="flex h-full min-h-[24rem] flex-col items-center justify-center text-center">
+                            <p class="text-sm font-semibold text-black">${this.t("wishlistEmpty")}</p>
+                            <button type="button" onclick="app.toggleWishlistDrawer(false); app.navigate('plp', { category: 'all' })" class="mt-6 flex h-12 items-center justify-center border border-[color:var(--lux-line)] px-6 text-[11px] font-semibold uppercase tracking-[0.24em] text-black lux-ease hover:border-black">
+                                ${this.t("wishlistEmptyCTA")}
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = wishlistProducts.map((product) => `
+                    <article class="border-b border-[color:var(--lux-line)] py-5 last:border-b-0">
+                        <div class="grid grid-cols-[92px_minmax(0,1fr)] gap-4">
+                            <button type="button" onclick="app.toggleWishlistDrawer(false); app.navigate('pdp', { productId: '${product.id}' })" class="aspect-[4/5] overflow-hidden bg-lux-surface">
+                                <img src="${product.image}" alt="${product.name}" class="h-full w-full object-cover">
+                            </button>
+                            <div class="flex min-w-0 flex-col">
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${product.brand} / ${product.surface}</p>
+                                <button type="button" onclick="app.toggleWishlistDrawer(false); app.navigate('pdp', { productId: '${product.id}' })" class="mt-2 text-left text-base font-semibold leading-6 text-black lux-ease hover:text-gold-deep">
+                                    ${product.name}
+                                </button>
+                                <p class="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-black">${this.formatMoney(product.price)}</p>
+                                <button type="button" onclick="app.addWishlistToCart('${product.id}')" class="mt-4 flex h-11 items-center justify-center border border-[color:var(--lux-line)] px-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black lux-ease hover:border-black">
+                                    ${this.t("wishlistAddToBag")}
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `).join("");
+            },
+
+            renderSizeGuide() {
+                const container = document.getElementById("size-guide-content");
+                if (!container) return;
+
+                container.innerHTML = `
+                    <div class="flex h-full flex-col bg-white">
+                        <div class="flex justify-center pt-3 lg:hidden">
+                            <span class="h-1 w-10 rounded-full bg-neutral-300"></span>
+                        </div>
+                        <header class="flex items-start justify-between px-5 pb-4 pt-4 lg:px-8 lg:pb-6 lg:pt-6">
+                            <div>
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("sizeLabel")}</p>
+                                <h2 class="mt-3 font-display text-3xl leading-[0.92] tracking-[-0.03em] text-black lg:text-5xl">${this.t("sizeGuideTitle")}</h2>
+                            </div>
+                            <button type="button" onclick="app.toggleSizeGuide(false)" class="hidden h-11 w-11 items-center justify-center border border-[color:var(--lux-line)] text-black lux-ease hover:border-gold-deep hover:text-gold-deep lg:flex" aria-label="${this.t("closeAction")}">
+                                <i data-lucide="x" class="h-5 w-5"></i>
+                            </button>
+                        </header>
+                        <div class="flex-1 overflow-y-auto px-5 pb-5 lg:px-8 lg:pb-8">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full border-collapse text-[13px] lg:text-sm">
+                                    <thead>
+                                        <tr class="border-b border-[color:var(--lux-line)] text-left">
+                                            <th class="px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">EU</th>
+                                            <th class="px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">UK</th>
+                                            <th class="px-3 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500">US</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${sizeGuideRows.map((row, index) => `
+                                            <tr class="border-b border-[color:var(--lux-line)] ${index % 2 === 1 ? "bg-lux-surface" : "bg-white"}">
+                                                <td class="px-3 py-3 font-semibold text-black">${row.eu}</td>
+                                                <td class="px-3 py-3 text-neutral-700">${row.uk}</td>
+                                                <td class="px-3 py-3 text-neutral-700">${row.us}</td>
+                                            </tr>
+                                        `).join("")}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mt-5 text-[13px] leading-6 text-neutral-700 lg:text-sm">${this.t("sizeGuideNote")}</p>
+                        </div>
+                        <div class="border-t border-[color:var(--lux-line)] px-5 py-4 lg:hidden">
+                            <button type="button" onclick="app.toggleSizeGuide(false)" class="flex h-12 w-full items-center justify-center rounded-full bg-black text-[11px] font-semibold uppercase tracking-[0.24em] text-white lux-ease hover:bg-neutral-800">
+                                ${this.t("closeAction")}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            },
+
+            renderSizePicker() {
+                const container = document.getElementById("size-picker-content");
+                if (!container) return;
+                const product = this.state.sizePickerProductId ? this.getProduct(this.state.sizePickerProductId) : null;
+
+                container.innerHTML = product ? `
+                    <div class="flex h-full flex-col bg-white">
+                        <div class="flex justify-center pt-3">
+                            <span class="h-1 w-10 rounded-full bg-neutral-300"></span>
+                        </div>
+                        <div class="px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-4">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${this.t("quickAddPrompt")}</p>
+                            <p class="mt-3 truncate text-base font-semibold text-black">${product.name}</p>
+                            <div class="mt-5 grid grid-cols-5 gap-2">
+                                ${product.sizes.map((size) => `
+                                    <button type="button" onclick="app.addSizePickerSelection(${size})" class="flex h-12 w-12 items-center justify-center border border-lux-line text-sm font-semibold text-black lux-ease hover:border-black hover:bg-black hover:text-white">
+                                        ${size}
+                                    </button>
+                                `).join("")}
+                            </div>
+                        </div>
+                    </div>
+                ` : "";
+            },
+
+            renderSearchResults(query) {
+                const container = document.getElementById("search-results");
+                if (!container) return;
+                const normalized = query.trim().toLowerCase();
+                const matches = normalized
+                    ? products.filter((product) =>
+                        [product.name, product.brand, product.surface, product.category, product.badge].join(" ").toLowerCase().includes(normalized)
+                    )
+                    : products.slice(0, 4);
+
+                container.innerHTML = matches.map((product) => `
+                    <button type="button" onclick="app.navigate('pdp', { productId: '${product.id}' })" class="grid gap-4 border border-transparent bg-white p-4 text-left shadow-soft lux-ease hover:border-gold-deep md:grid-cols-[96px_minmax(0,1fr)]">
+                        <img src="${product.image}" alt="${product.name}" class="h-28 w-full object-cover md:w-24">
+                        <div>
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-500">${product.brand} / ${product.surface}</p>
+                            <h3 class="mt-2 text-3xl font-semibold leading-none text-black">${product.name}</h3>
+                            <p class="mt-2 text-sm leading-6 text-neutral-700">${this.l(product.subtitle)}</p>
+                            <p class="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-black">${this.formatMoney(product.price)}</p>
+                        </div>
+                    </button>
+                `).join("");
+                lucide.createIcons();
+            },
+
+            handleSearch(query) {
+                this.renderSearchResults(query);
+            },
+
+            changeGalleryImage(image) {
+                this.state.activeGalleryImage = image;
+                this.renderPDP();
+                lucide.createIcons();
+            },
+
+            selectSize(size) {
+                this.state.selectedSize = size;
+                this.renderPDP();
+                lucide.createIcons();
+            },
+
+            runPdpAction(action) {
+                if (this.state.pdpActionState.phase !== "idle") return;
+                this.state.pdpActionState = { action, phase: "loading" };
+                this.renderPDP();
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    this.state.pdpActionState = { action, phase: "success" };
+                    this.renderPDP();
+                    lucide.createIcons();
+
+                    setTimeout(() => {
+                        const productId = this.state.currentProductId;
+                        const size = this.state.selectedSize;
+                        this.state.pdpActionState = { action: null, phase: "idle" };
+
+                        if (action === "add") {
+                            this.addToCart(productId, size, true);
+                            if (this.state.currentView === "pdp") {
+                                this.renderPDP();
+                                lucide.createIcons();
+                            }
+                            return;
+                        }
+
+                        this.addToCart(productId, size, false);
+                        this.navigate("checkout");
+                    }, 600);
+                }, 400);
+            },
+
+            toggleWishlist(productId) {
+                const idx = this.state.wishlist.indexOf(productId);
+                if (idx > -1) {
+                    this.state.wishlist.splice(idx, 1);
+                    this.showToast(this.t("removedFromWishlist"));
+                } else {
+                    this.state.wishlist.push(productId);
+                    this.showToast(this.t("addedToWishlist"));
+                }
+                this.renderWishlist();
+                this.renderPDP();
+                this.updateBadges();
+                lucide.createIcons();
+            },
+
+            addToCart(productId, size, openCart) {
+                const existing = this.state.cart.find((item) => item.productId === productId && item.size === size);
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    this.state.cart.push({ productId, size, quantity: 1 });
+                }
+                this.renderCart();
+                this.showToast(this.t("addedToCart"));
+                if (openCart) this.toggleCart(true);
+            },
+
+            addWishlistToCart(productId) {
+                const product = products.find((item) => item.id === productId);
+                if (!product) return;
+                this.addToCart(productId, product.sizes[0], false);
+                this.renderWishlist();
+            },
+
+            addSizePickerSelection(size) {
+                if (!this.state.sizePickerProductId) return;
+                this.addToCart(this.state.sizePickerProductId, size, false);
+                this.closeSizePicker();
+            },
+
+            quickAdd(productId, event) {
+                event?.stopPropagation();
+                const product = this.getProduct(productId);
+                if (window.innerWidth < 1024) {
+                    this.openSizePicker(productId);
+                    return;
+                }
+                this.addToCart(productId, product.sizes[0], true);
+            },
+
+            orderNow(productId) {
+                const product = this.getProduct(productId);
+                this.addToCart(productId, product.sizes[0], false);
+                this.navigate("checkout");
+            },
+
+            addCurrentToCart(keepBrowsing) {
+                this.runPdpAction(keepBrowsing ? "add" : "order");
+            },
+
+            removeFromCart(index) {
+                this.state.cart.splice(index, 1);
+                this.renderCart();
+                this.renderCheckout();
+                this.showToast(this.t("removedFromCart"));
+            },
+
+            changeQty(index, delta) {
+                const item = this.state.cart[index];
+                if (!item) return;
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    this.state.cart.splice(index, 1);
+                }
+                this.renderCart();
+                this.renderCheckout();
+            },
+
+            updateBadges() {
+                const count = this.getCartCount();
+                const wishlistCount = this.state.wishlist.length;
+                document.getElementById("cart-badge-desktop").textContent = count;
+                document.getElementById("cart-badge-mobile").textContent = count;
+                const desktopWishlistBadge = document.getElementById("wishlist-badge-desktop");
+                const mobileWishlistBadge = document.getElementById("wishlist-badge-mobile");
+                [desktopWishlistBadge, mobileWishlistBadge].forEach((badge) => {
+                    if (!badge) return;
+                    badge.textContent = wishlistCount;
+                    badge.classList.toggle("hidden", wishlistCount === 0);
+                    badge.classList.toggle("flex", wishlistCount > 0);
+                });
+            },
+
+            startCheckout() {
+                if (!this.state.cart.length) {
+                    this.showToast(this.t("addBeforeCheckout"));
+                    return;
+                }
+                this.toggleCart(false);
+                this.navigate("checkout");
+            },
+
+            updateCheckoutField(field, value) {
+                this.state.checkout[field] = value;
+                this.renderCheckout();
+                setTimeout(() => this.validateCheckout(), 0);
+            },
+
+            validateCheckout() {
+                const name = document.getElementById("checkout-name");
+                const phone = document.getElementById("checkout-phone");
+                const address = document.getElementById("checkout-address");
+                const note = document.getElementById("checkout-note");
+                const submit = document.getElementById("checkout-submit");
+                if (!name || !phone || !address || !submit) return;
+
+                this.state.checkout.name = name.value.trim();
+                this.state.checkout.phone = phone.value.trim();
+                this.state.checkout.address = address.value.trim();
+                this.state.checkout.note = note ? note.value.trim() : "";
+
+                const valid =
+                    this.state.checkout.name.length > 2 &&
+                    this.state.checkout.phone.length > 7 &&
+                    this.state.checkout.address.length > 5;
+
+                submit.disabled = !valid;
+            },
+
+            processPayment() {
+                const submit = document.getElementById("checkout-submit");
+                if (!submit || submit.disabled) return;
+
+                submit.disabled = true;
+                submit.innerHTML = `<i data-lucide="loader-2" class="mr-2 inline h-4 w-4 animate-spin"></i>${this.t("processingPayment")}`;
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    this.showToast(this.t("paymentConfirmed"));
+                    this.state.lastOrder = {
+                        orderNumber: `GK-${Date.now().toString().slice(-6)}`,
+                        items: this.state.cart.map((item) => ({ ...item })),
+                        payment: this.state.checkout.payment,
+                        phone: this.state.checkout.phone
+                    };
+                    this.state.cart = [];
+                    this.renderCart();
+                    this.renderCheckout();
+                    this.navigate("confirmation");
+                }, 1400);
+            },
+
+            showAccountToast() {
+                this.showToast(this.t("accountToast"));
+            },
+
+            showWishlistToast() {
+                this.toggleWishlistDrawer(true);
+            }
+        };
+
+        window.app = app;
+        app.init();
+    </script>
+</body>
+</html>

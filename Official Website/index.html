@@ -1119,6 +1119,7 @@
                 this.buildDynamicNav();
                 this.attachOverlayEvents();
                 window.addEventListener("scroll", () => this.handleScroll(), { passive: true });
+                window.addEventListener("popstate", () => this.handleRouteFromUrl());
                 
                 const hasSale = products.some(p => p.originalPrice);
                 const promoLink = document.getElementById("dropdown-promocoes");
@@ -1140,6 +1141,14 @@
                 if (rawPath === '/' || rawPath === '') return;
 
                 const path = rawPath.startsWith('/') ? rawPath : '/' + rawPath;
+
+                if (path.startsWith('/produto/') || path.startsWith('/pdp/')) {
+                    const pId = path.replace('/produto/', '').replace('/pdp/', '');
+                    if (pId && this.getProduct(pId)) {
+                        this.navigate('pdp', { productId: pId, skipHistory: true });
+                        return;
+                    }
+                }
 
                 if (['/produtos', '/catalogo', '/chuteiras', '/all', '/todos'].includes(path)) {
                     this.navigate('plp');
@@ -1868,6 +1877,59 @@
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 }
                 this.syncNav();
+
+                // Dynamic Clean URL Bar Sync (HTML5 History API)
+                let targetUrl = '/';
+                if (view === 'home') {
+                    targetUrl = '/';
+                } else if (view === 'plp') {
+                    if (options.brand && options.brand !== 'all') {
+                        targetUrl = '/' + options.brand.toLowerCase().replace(/\s+/g, '');
+                    } else if (options.surface) {
+                        targetUrl = '/' + options.surface.toLowerCase();
+                    } else if (options.surfaces && options.surfaces.length) {
+                        const s = options.surfaces.join(',').toUpperCase();
+                        if (s.includes('IC') || s.includes('IN')) targetUrl = '/futsal';
+                        else if (s.includes('TF') || s.includes('AG')) targetUrl = '/society';
+                        else if (s.includes('FG') || s.includes('SG')) targetUrl = '/campo';
+                        else if (s.includes('MG') || s.includes('HG')) targetUrl = '/multi';
+                    } else if (this.state.activeBrand && this.state.activeBrand !== 'all') {
+                        targetUrl = '/' + this.state.activeBrand.toLowerCase().replace(/\s+/g, '');
+                    } else if (this.state.activeCategory === 'Acessórios') {
+                        targetUrl = '/acessorios';
+                    } else if (this.state.selectedBadges && this.state.selectedBadges.includes('Novo')) {
+                        targetUrl = '/novidades';
+                    } else if (this.state.selectedBadges && this.state.selectedBadges.includes('Promoção')) {
+                        targetUrl = '/promocoes';
+                    } else if (this.state.selectedBadges && this.state.selectedBadges.includes('Mais Vendido')) {
+                        targetUrl = '/mais-vendidos';
+                    } else if (options.silo) {
+                        targetUrl = '/' + options.silo.toLowerCase().replace(/\s+/g, '-');
+                    } else if (options.level) {
+                        targetUrl = '/' + options.level.toLowerCase();
+                    } else {
+                        targetUrl = '/produtos';
+                    }
+                } else if (view === 'pdp' && (options.productId || this.state.currentProductId)) {
+                    targetUrl = '/produto/' + (options.productId || this.state.currentProductId);
+                } else if (view === 'size-guide-page') {
+                    targetUrl = '/guia-de-tamanhos';
+                } else if (view === 'surface-guide') {
+                    targetUrl = '/guia-de-superficies';
+                } else if (view === 'boot-care') {
+                    targetUrl = '/cuidados';
+                } else if (view === 'about') {
+                    targetUrl = '/sobre';
+                } else if (view === 'checkout') {
+                    targetUrl = '/checkout';
+                }
+
+                if (!options.skipHistory && window.history && window.history.pushState) {
+                    if (window.location.pathname !== targetUrl) {
+                        window.history.pushState({ view, options }, '', targetUrl);
+                    }
+                }
+
                 lucide.createIcons();
             },
 

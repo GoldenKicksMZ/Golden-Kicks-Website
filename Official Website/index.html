@@ -1138,7 +1138,12 @@
                 const pathname = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
                 const hash = window.location.hash.toLowerCase().replace('#', '').replace('/', '');
                 const rawPath = pathname !== '/' ? pathname : (hash ? '/' + hash : '/');
-                if (rawPath === '/' || rawPath === '') return;
+                
+                if (rawPath === '/' || rawPath === '') {
+                    this.navigate('home', { skipHistory: true });
+                    document.title = "Golden Kicks — A melhor loja de chuteiras de Moçambique";
+                    return;
+                }
 
                 const path = rawPath.startsWith('/') ? rawPath : '/' + rawPath;
 
@@ -1151,107 +1156,110 @@
                 }
 
                 if (['/produtos', '/catalogo', '/chuteiras', '/all', '/todos'].includes(path)) {
-                    this.navigate('plp');
+                    this.navigate('plp', { skipHistory: true });
                     document.title = "Golden Kicks — Catálogo Completo de Chuteiras";
                 } else if (path === '/campo') {
-                    this.navigate('plp', { surfaces: ['FG', 'SG'] });
+                    this.navigate('plp', { surfaces: ['FG', 'SG'], skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras de Campo (FG & SG)";
                 } else if (path === '/futsal') {
-                    this.navigate('plp', { surfaces: ['IC', 'IN'] });
+                    this.navigate('plp', { surfaces: ['IC', 'IN'], skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras de Futsal (IC & IN)";
                 } else if (path === '/society') {
-                    this.navigate('plp', { surfaces: ['TF', 'AG'] });
+                    this.navigate('plp', { surfaces: ['TF', 'AG'], skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras de Society (TF & AG)";
                 } else if (['/multi', '/multiterreno'].includes(path)) {
-                    this.navigate('plp', { surfaces: ['MG', 'HG'] });
+                    this.navigate('plp', { surfaces: ['MG', 'HG'], skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Multiterreno (MG & HG)";
                 } else if (['/novidades', '/lancamentos'].includes(path)) {
-                    this.navigate('plp', { badge: 'Novo' });
+                    this.navigate('plp', { badge: 'Novo', skipHistory: true });
                     document.title = "Golden Kicks — Novidades & Lançamentos";
                 } else if (['/promocoes', '/saldos', '/outlet', '/ofertas'].includes(path)) {
-                    this.navigate('plp', { badge: 'Promoção' });
+                    this.navigate('plp', { badge: 'Promoção', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras em Promoção";
                 } else if (['/mais-vendidos', '/destaques', '/populares'].includes(path)) {
-                    this.navigate('plp', { badge: 'Mais Vendido' });
+                    this.navigate('plp', { badge: 'Mais Vendido', skipHistory: true });
                     document.title = "Golden Kicks — Mais Vendidos";
                 } else if (path === '/acessorios') {
-                    this.navigate('plp', { category: 'Acessórios' });
+                    this.navigate('plp', { category: 'Acessórios', skipHistory: true });
                     document.title = "Golden Kicks — Acessórios & Grip Socks";
                 } else if (path === '/nike') {
-                    this.navigate('plp', { brand: 'Nike' });
+                    this.navigate('plp', { brand: 'Nike', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Nike";
                 } else if (path === '/adidas') {
-                    this.navigate('plp', { brand: 'Adidas' });
+                    this.navigate('plp', { brand: 'Adidas', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Adidas";
                 } else if (path === '/puma') {
-                    this.navigate('plp', { brand: 'Puma' });
+                    this.navigate('plp', { brand: 'Puma', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Puma";
                 } else if (path === '/mizuno') {
-                    this.navigate('plp', { brand: 'Mizuno' });
+                    this.navigate('plp', { brand: 'Mizuno', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Mizuno";
                 } else if (path === '/joma') {
-                    this.navigate('plp', { brand: 'Joma' });
+                    this.navigate('plp', { brand: 'Joma', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Joma";
                 } else if (['/newbalance', '/nb'].includes(path)) {
-                    this.navigate('plp', { brand: 'New Balance' });
+                    this.navigate('plp', { brand: 'New Balance', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras New Balance";
                 } else if (['/mercurial', '/superfly', '/vapor'].includes(path)) {
-                    this.navigate('plp', { silo: 'Mercurial' });
+                    this.navigate('plp', { silo: 'Mercurial', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Nike Mercurial";
                 } else if (['/phantom', '/phantom-gx', '/phantom-luna'].includes(path)) {
-                    this.navigate('plp', { silo: 'Phantom' });
+                    this.navigate('plp', { silo: 'Phantom', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Nike Phantom";
                 } else if (path === '/tiempo') {
-                    this.navigate('plp', { silo: 'Tiempo' });
+                    this.navigate('plp', { silo: 'Tiempo', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Nike Tiempo";
                 } else if (path === '/predator') {
-                    this.navigate('plp', { silo: 'Predator' });
+                    this.navigate('plp', { silo: 'Predator', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Adidas Predator";
                 } else if (path === '/f50') {
-                    this.navigate('plp', { silo: 'F50' });
+                    this.navigate('plp', { silo: 'F50', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Adidas F50";
                 } else if (['/copa', '/copa-pure'].includes(path)) {
-                    this.navigate('plp', { silo: 'Copa' });
+                    this.navigate('plp', { silo: 'Copa', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Adidas Copa";
                 } else if (path === '/future') {
-                    this.navigate('plp', { silo: 'Future' });
+                    this.navigate('plp', { silo: 'Future', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Puma Future";
                 } else if (path === '/ultra') {
-                    this.navigate('plp', { silo: 'Ultra' });
+                    this.navigate('plp', { silo: 'Ultra', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Puma Ultra";
                 } else if (path === '/top-flex') {
-                    this.navigate('plp', { silo: 'Top Flex' });
+                    this.navigate('plp', { silo: 'Top Flex', skipHistory: true });
                     document.title = "Golden Kicks — Coleção Joma Top Flex";
                 } else if (path === '/elite') {
-                    this.navigate('plp', { level: 'Elite' });
+                    this.navigate('plp', { level: 'Elite', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Nível Elite";
                 } else if (path === '/pro') {
-                    this.navigate('plp', { level: 'Pro' });
+                    this.navigate('plp', { level: 'Pro', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Nível Pro";
                 } else if (['/club', '/academy'].includes(path)) {
-                    this.navigate('plp', { level: 'Club' });
+                    this.navigate('plp', { level: 'Club', skipHistory: true });
                     document.title = "Golden Kicks — Chuteiras Nível Club & Academy";
                 } else if (['/guia-de-tamanhos', '/tamanhos', '/tabela-de-tamanhos'].includes(path)) {
-                    this.navigate('size-guide-page');
+                    this.navigate('size-guide-page', { skipHistory: true });
                     document.title = "Golden Kicks — Guia de Tamanhos (EU 35-46)";
                 } else if (['/guia-de-superficies', '/superficies'].includes(path)) {
-                    this.navigate('surface-guide');
+                    this.navigate('surface-guide', { skipHistory: true });
                     document.title = "Golden Kicks — Guia de Superfícies & Solas";
                 } else if (['/cuidados', '/cuidar-chuteiras'].includes(path)) {
-                    this.navigate('boot-care');
+                    this.navigate('boot-care', { skipHistory: true });
                     document.title = "Golden Kicks — Como Cuidar das Suas Chuteiras";
                 } else if (['/sobre', '/quem-somos', '/loja'].includes(path)) {
-                    this.navigate('about');
+                    this.navigate('about', { skipHistory: true });
                     document.title = "Golden Kicks — Sobre Nós";
                 } else if (['/personalizacao', '/customizacao'].includes(path)) {
-                    this.navigate('about');
+                    this.navigate('about', { skipHistory: true });
                     document.title = "Golden Kicks — Personalização Premium";
                 } else if (['/carrinho', '/cart'].includes(path)) {
                     this.openCart();
                 } else if (['/favoritos', '/wishlist'].includes(path)) {
                     this.openWishlist();
                 } else if (path === '/checkout') {
-                    this.navigate('checkout');
+                    this.navigate('checkout', { skipHistory: true });
+                } else {
+                    this.navigate('home', { skipHistory: true });
+                    document.title = "Golden Kicks — A melhor loja de chuteiras de Moçambique";
                 }
             },
 
